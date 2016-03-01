@@ -1,20 +1,24 @@
 public class Person {
     private Name name;
 
-    private String gender;
+    private Gender gender;
 
     private int age;
 
     private Address address;
 
-    public Person(String firstName, String lastName, String gender, int age, String city, String state, String country) {
-        this.name = new Name(firstName, lastName, gender);
+    public Person(Name name, Gender gender, int age, Address address) {
+        this.name = name;
         this.gender = gender;
         this.age = age;
-        this.address = new Address(city, state, country);
+        this.address = address;
+    }
+
+    private String addPrefix(String fullname){
+        return gender.getPrefix() + " " + fullname;
     }
 
     public String representInvitation() {
-        return name.toString();
+        return addPrefix(name.toString());
     }
 }
