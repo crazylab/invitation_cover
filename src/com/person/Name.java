@@ -1,3 +1,5 @@
+package com.person;
+
 public class Name {
     private String first;
 
@@ -8,16 +10,11 @@ public class Name {
         this.last = lastName;
     }
 
-    @Override
-    public String toString() {
-        return firstNameFirst();
-    }
-
-    public String firstNameFirst() {
+    String representCasually() {
         return first + " " + last;
     }
 
-    public String lastNameFirst() {
+    String representFormally() {
         return last + ", " + first;
     }
 }

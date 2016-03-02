@@ -1,3 +1,5 @@
+package com.person;
+
 public class Person {
     private Name name;
 
@@ -14,11 +16,15 @@ public class Person {
         this.address = address;
     }
 
-    private String addPrefix(String fullname){
-        return gender.getPrefix() + " " + fullname;
+    private String generateFullName(String name) {
+        return gender.prefix() + " " + name;
     }
 
-    public String representInvitation() {
-        return addPrefix(name.toString());
+    public String representCasually() {
+        return generateFullName(name.representCasually());
+    }
+
+    public String representFormally() {
+        return generateFullName(name.representFormally());
     }
 }
