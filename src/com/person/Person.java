@@ -16,15 +16,19 @@ public class Person {
         this.address = address;
     }
 
-    private String generateFullName(String name) {
-        return gender.prefix() + " " + name;
+    private String representInvitation(String fullname) {
+        String template = "prefix name, country";
+        return template
+                    .replace("prefix", gender.prefix())
+                    .replace("name", fullname)
+                    .replace("country", address.getCountry());
     }
 
     public String representCasually() {
-        return generateFullName(name.representCasually());
+        return representInvitation(name.representCasually());
     }
 
     public String representFormally() {
-        return generateFullName(name.representFormally());
+        return representInvitation(name.representFormally());
     }
 }
