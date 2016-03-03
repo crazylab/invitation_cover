@@ -6,7 +6,6 @@ public class Person {
     private Gender gender;
 
     private int age;
-
     private Address address;
 
     public Person(Name name, Gender gender, int age, Address address) {

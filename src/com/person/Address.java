@@ -1,8 +1,5 @@
 package com.person;
 
-/**
- * Created by rahulna on 01/03/16.
- */
 public class Address {
     private String city;
 
