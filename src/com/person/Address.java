@@ -19,4 +19,11 @@ public class Address {
     public String getCountry(){
         return country;
     }
+    public String getState(){
+        return state;
+    }
+
+    public String getCity() {
+        return city;
+    }
 }

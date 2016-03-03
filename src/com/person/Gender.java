@@ -4,10 +4,10 @@ public enum Gender {
     Male("Mr"),
     Female("Ms");
 
-    private String prefix;
+    private String title;
 
-    Gender(String prefix) {
-        this.prefix = prefix;
+    Gender(String title) {
+        this.title = title;
     }
 
     @Override
@@ -15,7 +15,7 @@ public enum Gender {
         return name();
     }
 
-    public String prefix(){
-        return prefix;
+    public String getTitle(){
+        return title;
     }
 }
