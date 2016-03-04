@@ -1,22 +1,17 @@
-package represent;
+package com.person;
 
-import com.person.Address;
-import com.person.Gender;
-import com.person.Name;
-import com.person.Person;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class InvitationTest {
-
+public class PersonTest {
     @Test
     public void testFormally_gives_the_casual_invitation_for_male() throws Exception {
         Name name = new Name("John", "Smith");
         Address address = new Address("Bangalore", "Karnataka", "India");
         Person john = new Person(name, Gender.Male, 21, address);
 
-        assertEquals("Mr John Smith, India", new Invitation(john).casully());
+        assertEquals("Mr John Smith, India", john.getCasualInvitation());
     }
 
     @Test
@@ -25,7 +20,7 @@ public class InvitationTest {
         Address address = new Address("Bangalore", "Karnataka", "India");
         Person maria = new Person(name, Gender.Female, 21, address);
 
-        assertEquals("Ms Maria Smith, India", new Invitation(maria).casully());
+        assertEquals("Ms Maria Smith, India", maria.getCasualInvitation());
     }
 
     @Test
@@ -34,7 +29,7 @@ public class InvitationTest {
         Address address = new Address("Bangalore", "Karnataka", "India");
         Person john = new Person(name, Gender.Male, 21, address);
 
-        assertEquals("Mr Smith, John, India", new Invitation(john).formally());
+        assertEquals("Mr Smith, John, India", john.getFormalInvitation());
     }
 
     @Test
@@ -43,6 +38,6 @@ public class InvitationTest {
         Address address = new Address("Bangalore", "Karnataka", "India");
         Person maria = new Person(name, Gender.Female, 21, address);
 
-        assertEquals("Ms Smith, Maria, India", new Invitation(maria).formally());
+        assertEquals("Ms Smith, Maria, India", maria.getFormalInvitation());
     }
 }
