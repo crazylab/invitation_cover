@@ -1,4 +1,4 @@
-package fileIO;
+package com.dataHandler;
 
 import com.person.Address;
 import com.person.Gender;
@@ -9,31 +9,29 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-public class CSVReader {
+public class Data {
     private String fileName;
 
-    List<Person> entries = new ArrayList<Person>();
+    private Database database;
 
-    public CSVReader(String fileName) {
+    public Data(String fileName, Database database) {
         this.fileName = fileName;
+        this.database = database;
     }
 
-    public List<Person> getGuestList() throws IOException {
+    public Database addToDatabase() throws IOException {
         File file = new File(fileName);
-        long fileSize = file.length();
-
         String line = "";
         BufferedReader reader = new BufferedReader(new FileReader(file));
 
         while (reader.readLine() != null) {
             line = reader.readLine();
             String[] personDetails = line.split(",");
-            entries.add(createPerson(personDetails));
+            Person person = createPerson(personDetails);
+            database.addToCountry(person.getCountry(), person);
         }
-        return entries;
+        return database;
     }
 
     private Person createPerson(String[] details) {

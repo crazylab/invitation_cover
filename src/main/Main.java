@@ -1,21 +1,22 @@
 package main;
 
+import com.dataHandler.Data;
+import com.dataHandler.Database;
 import com.person.Person;
-import fileIO.CSVReader;
-import represent.Invitation;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        CSVReader reader = new CSVReader("data/records");
-        List<Person> entries = reader.getGuestList();
+        Database database = new Database();
+        Data data = new Data("data/records", database);
 
-        for (Person person:entries) {
-            Invitation invitation = new Invitation(person);
-            System.out.println(invitation.casully());
-            System.out.println(invitation.formally());
-        }
+        data.addToDatabase();
+
+        ArrayList<Person> guests = database.getGuestsFrom("Bangladesh");
+        for (Person person : guests)
+            System.out.println(person.getCasulaName());
+
     }
 }
