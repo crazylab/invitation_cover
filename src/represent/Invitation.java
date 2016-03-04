@@ -2,10 +2,10 @@ package represent;
 
 import com.person.Person;
 
-public class Invite {
+public class Invitation {
     private Person person;
 
-    public Invite(Person person) {
+    public Invitation(Person person) {
         this.person = person;
     }
 
