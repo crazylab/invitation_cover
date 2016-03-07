@@ -10,11 +10,6 @@ public enum Gender {
         this.title = title;
     }
 
-    @Override
-    public String toString() {
-        return name();
-    }
-
     public String getTitle(){
         return title;
     }

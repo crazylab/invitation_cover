@@ -4,12 +4,12 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class PersonTest {
+public class GuestTest {
     @Test
     public void testFormally_gives_the_casual_invitation_for_male() throws Exception {
         Name name = new Name("John", "Smith");
         Address address = new Address("Bangalore", "Karnataka", "India");
-        Person john = new Person(name, Gender.Male, 21, address);
+        Guest john = new Guest(name, Gender.Male, 21, address);
 
         assertEquals("Mr John Smith, India", john.getCasualInvitation());
     }
@@ -18,7 +18,7 @@ public class PersonTest {
     public void testFormally_gives_the_casual_invitation_for_female() throws Exception {
         Name name = new Name("Maria", "Smith");
         Address address = new Address("Bangalore", "Karnataka", "India");
-        Person maria = new Person(name, Gender.Female, 21, address);
+        Guest maria = new Guest(name, Gender.Female, 21, address);
 
         assertEquals("Ms Maria Smith, India", maria.getCasualInvitation());
     }
@@ -27,7 +27,7 @@ public class PersonTest {
     public void testCasully_gives_the_formal_invitation_for_male() throws Exception {
         Name name = new Name("John", "Smith");
         Address address = new Address("Bangalore", "Karnataka", "India");
-        Person john = new Person(name, Gender.Male, 21, address);
+        Guest john = new Guest(name, Gender.Male, 21, address);
 
         assertEquals("Mr Smith, John, India", john.getFormalInvitation());
     }
@@ -36,7 +36,7 @@ public class PersonTest {
     public void testCasually_gives_the_formal_invitation_for_female() throws Exception {
         Name name = new Name("Maria", "Smith");
         Address address = new Address("Bangalore", "Karnataka", "India");
-        Person maria = new Person(name, Gender.Female, 21, address);
+        Guest maria = new Guest(name, Gender.Female, 21, address);
 
         assertEquals("Ms Smith, Maria, India", maria.getFormalInvitation());
     }

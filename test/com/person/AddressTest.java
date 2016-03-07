@@ -2,28 +2,24 @@ package com.person;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-/**
- * Created by rahulna on 03/03/16.
- */
 public class AddressTest {
 
     @Test
-    public void testGetCountry_returns_the_country() throws Exception {
-        Address address = new Address("Bangalore", "Karnataka", "India");
-        assertEquals("India", address.getCountry());
+    public void testIsFromCountry_returns_true_when_country_is_same() throws Exception {
+        Address kolkata = new Address("Kolkata", "WB", "India");
+
+        assertTrue(kolkata.isFromCountry("India"));
+        assertFalse(kolkata.isFromCountry("USA"));
     }
 
     @Test
-    public void testGetState_returns_the_country() throws Exception {
-        Address address = new Address("Bangalore", "Karnataka", "India");
-        assertEquals("Karnataka", address.getState());
-    }
+    public void testIsFromCountry_does_not_depends_on_the_case_of_provided_country() throws Exception {
+        Address kolkata = new Address("Kolkata", "WB", "India");
 
-    @Test
-    public void testGetCity_returns_the_country() throws Exception {
-        Address address = new Address("Bangalore", "Karnataka", "India");
-        assertEquals("Bangalore", address.getCity());
+        assertTrue(kolkata.isFromCountry("indiA"));
+        assertFalse(kolkata.isFromCountry("UsA"));
     }
 }

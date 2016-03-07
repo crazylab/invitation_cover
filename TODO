@@ -1,0 +1,20 @@
+Write Library to print(represent) label from record:
+
+List of records provided
+    Format: firstName,lastName,gender,age,city,state,country
+
+Furnish label options for specific country
+
+Output:
+    Mr/Ms First Last, Country
+    Mr/Ms Last, First, Country
+
+    Prefix :
+        Male -> Mr
+        Female -> Ms
+
+Priritize invitation
+
+------------------------------------------------------------------
+read command line input as followes:
+    InvitationGenerator [formal/casual] country_name file_path

@@ -10,11 +10,11 @@ public class Name {
         this.last = lastName;
     }
 
-    String representCasually() {
+    public String representCasually() {
         return first + " " + last;
     }
 
-    String representFormally() {
+    public String representFormally() {
         return last + ", " + first;
     }
 }

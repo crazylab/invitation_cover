@@ -13,14 +13,11 @@ public class Address {
         this.country = country;
     }
 
-    public String getCountry(){
-        return country;
-    }
-    public String getState(){
-        return state;
+    public boolean isFromCountry(String country){
+        return this.country.equalsIgnoreCase(country);
     }
 
-    public String getCity() {
-        return city;
+    public String getCountry(){
+        return country;
     }
 }

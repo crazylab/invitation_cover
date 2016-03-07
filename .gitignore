@@ -1,6 +1,9 @@
 .DS_Store
-data
+textEntryList
 lib
 out
 invitation_cover.iml
 .idea
+coverage
+data
+
