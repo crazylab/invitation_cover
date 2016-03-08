@@ -1,4 +1,4 @@
-package com.person;
+package com.guest;
 
 import org.junit.Test;
 

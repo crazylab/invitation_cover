@@ -1,9 +1,11 @@
 //package com.dataHandler;
 //
-//
-//import com.person.*;
-//import invitation.FormalName;
-//import invitation.CasualName;
+//import com.guest.Address;
+//import com.guest.Gender;
+//import com.guest.Guest;
+//import com.guest.Name;
+//import invitation.name.CasualName;
+//import invitation.name.FormalName;
 //
 //import java.util.ArrayList;
 //import java.util.List;

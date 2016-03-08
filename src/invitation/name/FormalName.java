@@ -1,9 +1,10 @@
 package invitation.name;
 
-public class FormalName implements NameRepresentation {
+public class FormalName implements NameFormat {
 
     @Override
-    public String call(String firstName, String lastName) {
-        return lastName.concat(", " + firstName);
+    public String callWithTitle(String title, String firstName, String lastName) {
+        String fullName = lastName.concat(", "+firstName);
+        return title.concat(" "+fullName);
     }
 }

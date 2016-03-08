@@ -1,4 +1,4 @@
-package com.person;
+package com.guest;
 
 public enum Gender {
     Male("Mr"),
@@ -6,7 +6,7 @@ public enum Gender {
 
     private String title;
 
-    private Gender(String title) {
+    Gender(String title) {
         this.title = title;
     }
 

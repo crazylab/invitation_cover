@@ -19,7 +19,7 @@
 //
 //        GuestList guestList = new GuestList(guestListAsText);
 //        List<String> formalInvitation = guestList.getFormalInvitation("India");
-//        System.out.println(formalInvitation.size());
+//
 //        assertEquals(formalInvitation.get(0),"Ms Being, Human, India");
 //        assertEquals(formalInvitation.get(1),"Mr guy, Poor, India");
 //    }
