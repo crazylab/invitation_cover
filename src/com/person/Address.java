@@ -17,7 +17,7 @@ public class Address {
         return this.country.equalsIgnoreCase(country);
     }
 
-    public String getCountry(){
-        return country;
+    public String addCountryAtEnd(String label){
+        return label.concat(", "+country);
     }
 }

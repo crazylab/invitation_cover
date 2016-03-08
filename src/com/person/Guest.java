@@ -1,6 +1,6 @@
 package com.person;
 
-import com.invite.Invitation;
+import invitation.Invitation;
 
 public class Guest {
     private Name name;
@@ -11,38 +11,30 @@ public class Guest {
 
     private Address address;
 
-    public Guest(Name name, Gender gender, int age, Address address) {
+    private Invitation invitation;
+
+    public Guest(Name name, Gender gender, int age, Address address, Invitation invitation) {
         this.name = name;
         this.gender = gender;
         this.age = age;
         this.address = address;
+        this.invitation = invitation;
     }
 
-    private String getTitle(){
-        return gender.getTitle();
+//    private String getTitle(){
+//        return gender.getTitle();
+//    }
+
+//    public boolean isFromCountry(String countryName){
+//        return address.isFromCountry(countryName);
+//    }
+
+    public String invite(){
+        String title = gender.getTitle();
+        return invitation.invite(title, name, address);
     }
 
-    private String getFormalName(){
-        return name.representFormally();
-    }
-
-    private String getCasualName(){
-        return name.representCasually();
-    }
-
-    public boolean isFromCountry(String countryName){
-        return address.isFromCountry(countryName);
-    }
-
-    public String getFormalInvitation() {
-        return new Invitation().getLabelWithCountry(getTitle(), getFormalName(), address.getCountry());
-    }
-
-    public String getCasualInvitation() {
-        return new Invitation().getLabelWithCountry(getTitle(), getCasualName(), address.getCountry());
-    }
-
-    public String getCountry(){
-        return address.getCountry();
-    }
+//    public String getCountry(){
+//        return address.getCountry();
+//    }
 }

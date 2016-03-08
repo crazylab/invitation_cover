@@ -17,4 +17,5 @@ Priritize invitation
 
 ------------------------------------------------------------------
 read command line input as followes:
-    InvitationGenerator [formal/casual] country_name file_path
+    InvitationGenerator -f -c country_name file_path
+    InvitationGenerator -l -c country_name file_path
