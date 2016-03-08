@@ -22,4 +22,8 @@ public class Guest {
         String title = gender.getTitle();
         return invitation.invite(title, name, address);
     }
+
+    public boolean isFromCountry(String country){
+        return address.isFromCountry(country);
+    }
 }
