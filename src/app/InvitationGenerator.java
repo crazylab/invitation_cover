@@ -1,12 +1,12 @@
 package app;
 
 import com.dataHandler.FileIO;
-import com.dataHandler.GuestList;
-import invitation.Invitation;
-import invitation.NameWithCountry;
+import com.guestList.GuestList;
+import invitation.label.InvitationPrinter;
+import invitation.label.NameWithCountry;
+import invitation.name.Caller;
 import invitation.name.CasualName;
 import invitation.name.FormalName;
-import invitation.name.NameFormat;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,21 +37,21 @@ public class InvitationGenerator {
         GuestList guestList = new GuestList(guestListAsText);
 
         List<String> guests;
-        NameFormat nameFormat;
-        Invitation invitation;
+        Caller caller;
+        InvitationPrinter invitation;
 
         switch (representationFormat) {
             case "FORMAL":
-                nameFormat = new FormalName();
-                invitation = new NameWithCountry(nameFormat);
+                caller = new FormalName();
+                invitation = new NameWithCountry(caller);
 
                 guests = guestList.inviteFrom(countryRequested, invitation);
                 for (String guest : guests)
                     System.out.println(guest);
                 break;
             default:
-                nameFormat = new CasualName();
-                invitation = new NameWithCountry(nameFormat);
+                caller = new CasualName();
+                invitation = new NameWithCountry(caller);
 
                 guests = guestList.inviteFrom(countryRequested, invitation);
                 for (String guest : guests)

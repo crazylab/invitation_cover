@@ -1,9 +1,10 @@
 package com.guest;
 
-import invitation.NameWithCountry;
+import invitation.label.InvitationPrinter;
+import invitation.label.NameWithCountry;
+import invitation.name.Caller;
 import invitation.name.CasualName;
 import invitation.name.FormalName;
-import invitation.name.NameFormat;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -13,39 +14,43 @@ public class GuestTest {
     public void testInvite_gives_the_casual_invitation_for_male_when_invitation_is_informal() throws Exception {
         Name name = new Name("John", "Smith");
         Address address = new Address("Bangalore", "Karnataka", "India");
-        Guest john = new Guest(name, Gender.Male, 21, address);
-        NameFormat nameFormat = new CasualName();
+        Guest john = new Guest(name, Gender.MALE, new Age(21), address);
 
-        assertEquals("Mr John Smith, India", john.invite(new NameWithCountry(nameFormat)));
+        Caller casualCaller = new CasualName();
+        InvitationPrinter invitationPrinter = new NameWithCountry(casualCaller);
+        assertEquals("Mr John Smith, India", john.invite(invitationPrinter));
     }
 
     @Test
     public void testInvite_gives_the_casual_invitation_for_female() throws Exception {
         Name name = new Name("Maria", "Smith");
         Address address = new Address("Bangalore", "Karnataka", "India");
-        Guest maria = new Guest(name, Gender.Female, 21, address);
+        Guest maria = new Guest(name, Gender.FEMALE, new Age(21), address);
 
-        NameFormat nameFormat = new CasualName();
-        assertEquals("Ms Maria Smith, India", maria.invite(new NameWithCountry(nameFormat)));
+        Caller casualCaller = new CasualName();
+        InvitationPrinter invitationPrinter = new NameWithCountry(casualCaller);
+        assertEquals("Ms Maria Smith, India", maria.invite(invitationPrinter));
     }
 
     @Test
     public void testInvite_gives_the_formal_invitation_for_male() throws Exception {
         Name name = new Name("John", "Smith");
         Address address = new Address("Bangalore", "Karnataka", "India");
-        Guest john = new Guest(name, Gender.Male, 21, address);
+        Guest john = new Guest(name, Gender.MALE, new Age(21), address);
 
-        NameFormat nameFormat = new FormalName();
-        assertEquals("Mr Smith, John, India", john.invite(new NameWithCountry(nameFormat)));
+        Caller formalCaller = new FormalName();
+        InvitationPrinter invitationPrinter = new NameWithCountry(formalCaller);
+        assertEquals("Mr Smith, John, India", john.invite(invitationPrinter));
     }
 
     @Test
     public void testInvite_gives_the_formal_invitation_for_female() throws Exception {
         Name name = new Name("Maria", "Smith");
         Address address = new Address("Bangalore", "Karnataka", "India");
-        Guest maria = new Guest(name, Gender.Female, 21, address);
+        Guest maria = new Guest(name, Gender.FEMALE, new Age(21), address);
 
-        NameFormat nameFormat = new FormalName();
-        assertEquals("Ms Smith, Maria, India", maria.invite(new NameWithCountry(nameFormat)));
+        Caller formalCaller = new FormalName();
+        InvitationPrinter invitationPrinter = new NameWithCountry(formalCaller);
+        assertEquals("Ms Smith, Maria, India", maria.invite(invitationPrinter));
     }
 }

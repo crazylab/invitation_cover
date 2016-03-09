@@ -2,6 +2,7 @@ package com.guest;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -21,5 +22,12 @@ public class AddressTest {
 
         assertTrue(kolkata.isFromCountry("indiA"));
         assertFalse(kolkata.isFromCountry("UsA"));
+    }
+
+    @Test
+    public void testAddCountryAtTheEnd_adds_country_at_the_end_of_the_given_label() throws Exception {
+        Address kolkata = new Address("Kolkata", "WB", "India");
+
+        assertEquals("John Smith, India", kolkata.addCountryAtTheEnd("John Smith"));
     }
 }

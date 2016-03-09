@@ -1,8 +1,8 @@
 package com.guest;
 
 public enum Gender {
-    Male("Mr"),
-    Female("Ms");
+    MALE("Mr"),
+    FEMALE("Ms");
 
     private String title;
 
@@ -10,7 +10,7 @@ public enum Gender {
         this.title = title;
     }
 
-    public String getTitle(){
+    public String getHonorific(){
         return title;
     }
 }

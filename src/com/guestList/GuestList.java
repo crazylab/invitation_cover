@@ -1,10 +1,7 @@
-package com.dataHandler;
+package com.guestList;
 
-import com.guest.Address;
-import com.guest.Gender;
-import com.guest.Guest;
-import com.guest.Name;
-import invitation.Invitation;
+import com.guest.*;
+import invitation.label.InvitationPrinter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +26,8 @@ public class GuestList {
         String details[] = guestDetails.split(",");
 
         Name name = new Name(details[0], details[1]);
-        Gender gender = Gender.valueOf(details[2].trim());
-        int age = Integer.parseInt(details[3].trim());
+        Gender gender = Gender.valueOf(details[2].toUpperCase());
+        Age age = new Age(Integer.parseInt(details[3]));
         Address address = new Address(details[4], details[5], details[6]);
 
         return new Guest(name, gender, age, address);
@@ -47,12 +44,12 @@ public class GuestList {
         return guestFromRequestedCountry;
     }
 
-    public List<String> inviteFrom(String country, Invitation invitation) {
+    public List<String> inviteFrom(String country, InvitationPrinter invitationPrinter) {
         List<Guest> guestFromRequestedCountry = getGuestsFrom(country);
         List<String> invitationLabels = new ArrayList<String>();
 
         for (Guest guest : guestFromRequestedCountry) {
-            invitationLabels.add(guest.invite(invitation));
+            invitationLabels.add(guest.invite(invitationPrinter));
         }
         return invitationLabels;
     }

@@ -1,10 +1,9 @@
 package invitation.name;
 
-public class CasualName implements NameFormat {
+public class CasualName implements Caller {
 
     @Override
-    public String callWithTitle(String title, String firstName, String lastName) {
-        String fullName = firstName.concat(" "+lastName);
-        return title.concat(" "+fullName);
+    public String call(String title, String firstName, String lastName) {
+        return String.format("%s %s %s", title, firstName, lastName);
     }
 }
