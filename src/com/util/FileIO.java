@@ -10,9 +10,9 @@ public class FileIO {
         ArrayList<String[]> guestListAsText = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
 
+
         while (reader.readLine() != null)
             guestListAsText.add(reader.readLine().split(","));
-
         return guestListAsText;
     }
 }

@@ -5,6 +5,6 @@ import com.guest.Age;
 import com.guest.Gender;
 import com.guest.Name;
 
-public interface InvitationPrinter {
+public interface InvitationGenerator {
     String invite(Name name, Gender gender, Age age, Address address);
 }

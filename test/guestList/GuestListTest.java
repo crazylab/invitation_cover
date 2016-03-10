@@ -1,9 +1,9 @@
 package guestList;
 
+import com.invitation.label.InvitationGenerator;
 import com.validation.ValidateByCountry;
 import com.validation.Validations;
 import com.guestList.GuestList;
-import com.invitation.label.InvitationPrinter;
 import com.invitation.label.NameWithCountry;
 import com.invitation.name.Caller;
 import com.invitation.name.FirstNameFirst;
@@ -32,12 +32,12 @@ public class GuestListTest {
     @Test
     public void testInviteFrom_gives_the_formal_invitation_for_all_the_guests_from_a_specific_country() throws Exception {
         Caller caller = new LastNameFirst();
-        InvitationPrinter invitationPrinter = new NameWithCountry(caller);
+        InvitationGenerator invitationGenerator = new NameWithCountry(caller);
 
         Validations validations = new Validations();
         validations.addValidation(new ValidateByCountry("India"));
 
-        List<String> formalInvitation = guestList.invite(invitationPrinter, validations);
+        List<String> formalInvitation = guestList.invite(invitationGenerator, validations);
 
         assertEquals(formalInvitation.get(0), "Ms Being, Human, India");
         assertEquals(formalInvitation.get(1), "Mr guy, Poor, India");
@@ -46,12 +46,12 @@ public class GuestListTest {
     @Test
     public void testInviteFrom_gives_the_casual_invitation_for_all_the_guests_from_a_specific_country() throws Exception {
         Caller caller = new FirstNameFirst();
-        InvitationPrinter invitationPrinter = new NameWithCountry(caller);
+        InvitationGenerator invitationGenerator = new NameWithCountry(caller);
 
         Validations validations = new Validations();
         validations.addValidation(new ValidateByCountry("USA"));
 
-        List<String> casualInvitation = guestList.invite(invitationPrinter, validations);
+        List<String> casualInvitation = guestList.invite(invitationGenerator, validations);
 
         assertEquals(casualInvitation.get(0), "Mr US Guest, USA");
     }

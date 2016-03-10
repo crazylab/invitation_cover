@@ -6,7 +6,7 @@ import com.guest.Gender;
 import com.guest.Name;
 import com.invitation.name.Caller;
 
-public class NameWithCountry implements InvitationPrinter {
+public class NameWithCountry implements InvitationGenerator {
     private Caller caller;
 
     public NameWithCountry(Caller caller) {

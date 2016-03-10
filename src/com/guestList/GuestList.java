@@ -1,8 +1,8 @@
 package com.guestList;
 
+import com.invitation.label.InvitationGenerator;
 import com.validation.Validations;
 import com.guest.Guest;
-import com.invitation.label.InvitationPrinter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +21,11 @@ public class GuestList {
         this.guestList = guestList;
     }
 
-    public List<String> invite(InvitationPrinter invitationPrinter, Validations filter){
+    public List<String> invite(InvitationGenerator invitationGenerator, Validations filter){
         List<String> invitationLabels = new ArrayList<>();
         for (Guest guest : guestList)
             if(filter.isValid(guest))
-                invitationLabels.add(guest.invite(invitationPrinter));
+                invitationLabels.add(guest.invite(invitationGenerator));
         return invitationLabels;
     }
 //    public void addGuest(Guest guest){
@@ -43,7 +43,7 @@ public class GuestList {
 //        return guestFromRequestedCountry;
 //    }
 //
-//    public List<String> inviteFrom(InvitationPrinter invitationPrinter) {
+//    public List<String> inviteFrom(LabelGenerator invitationPrinter) {
 //        List<Guest> guestFromRequestedCountry = getGuestsFrom(country);
 //        List<String> invitationLabels = new ArrayList<>();
 //

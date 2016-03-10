@@ -13,9 +13,9 @@ Output:
         Male -> Mr
         Female -> Ms
 
-Priritize invitationPrinter
+Priritize invitationGenerator
 
 ------------------------------------------------------------------
 read command line input as followes:
-    InvitationGenerator --firstNameFirst -c country_name file_path
-    InvitationGenerator --lastNameFirst -c country_name file_path
+    InvitationGenerator --firstNameFirst --country country_name --age age file_path
+    InvitationGenerator --lastNameFirst --country country_name --age age file_path

@@ -1,6 +1,6 @@
 package com.guest;
 
-import com.invitation.label.InvitationPrinter;
+import com.invitation.label.InvitationGenerator;
 import com.invitation.label.NameWithCountry;
 import com.invitation.name.Caller;
 import com.invitation.name.FirstNameFirst;
@@ -17,8 +17,8 @@ public class GuestTest {
         Guest john = new Guest(name, Gender.MALE, new Age(21), address);
 
         Caller casualCaller = new FirstNameFirst();
-        InvitationPrinter invitationPrinter = new NameWithCountry(casualCaller);
-        assertEquals("Mr John Smith, India", john.invite(invitationPrinter));
+        InvitationGenerator invitationGenerator = new NameWithCountry(casualCaller);
+        assertEquals("Mr John Smith, India", john.invite(invitationGenerator));
     }
 
     @Test
@@ -28,8 +28,8 @@ public class GuestTest {
         Guest maria = new Guest(name, Gender.FEMALE, new Age(21), address);
 
         Caller casualCaller = new FirstNameFirst();
-        InvitationPrinter invitationPrinter = new NameWithCountry(casualCaller);
-        assertEquals("Ms Maria Smith, India", maria.invite(invitationPrinter));
+        InvitationGenerator invitationGenerator = new NameWithCountry(casualCaller);
+        assertEquals("Ms Maria Smith, India", maria.invite(invitationGenerator));
     }
 
     @Test
@@ -39,8 +39,8 @@ public class GuestTest {
         Guest john = new Guest(name, Gender.MALE, new Age(21), address);
 
         Caller formalCaller = new LastNameFirst();
-        InvitationPrinter invitationPrinter = new NameWithCountry(formalCaller);
-        assertEquals("Mr Smith, John, India", john.invite(invitationPrinter));
+        InvitationGenerator invitationGenerator = new NameWithCountry(formalCaller);
+        assertEquals("Mr Smith, John, India", john.invite(invitationGenerator));
     }
 
     @Test
@@ -50,7 +50,7 @@ public class GuestTest {
         Guest maria = new Guest(name, Gender.FEMALE, new Age(21), address);
 
         Caller formalCaller = new LastNameFirst();
-        InvitationPrinter invitationPrinter = new NameWithCountry(formalCaller);
-        assertEquals("Ms Smith, Maria, India", maria.invite(invitationPrinter));
+        InvitationGenerator invitationGenerator = new NameWithCountry(formalCaller);
+        assertEquals("Ms Smith, Maria, India", maria.invite(invitationGenerator));
     }
 }

@@ -4,13 +4,13 @@ import com.invitation.name.Caller;
 import com.invitation.name.FirstNameFirst;
 import com.invitation.name.LastNameFirst;
 
-public enum NameFormatOption {
+public enum NameFormatOptions {
     FIRSTNAMEFIRST(new FirstNameFirst()),
     LASTNAMEFIRST(new LastNameFirst());
 
     private Caller caller;
 
-    NameFormatOption(Caller caller) {
+    NameFormatOptions(Caller caller) {
         this.caller = caller;
     }
 
