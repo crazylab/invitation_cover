@@ -1,6 +1,6 @@
-package invitation.name;
+package com.invitation.name;
 
-public class FormalName implements Caller {
+public class LastNameFirst implements Caller {
 
     @Override
     public String call(String title, String firstName, String lastName) {

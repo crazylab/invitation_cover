@@ -1,4 +1,4 @@
-package com.dataHandler;
+package com.util;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -8,7 +8,7 @@ import java.util.List;
 
 public class FileIO {
     public static List<String> readLines(String filePath) throws IOException {
-        List<String> guestListAsText = new ArrayList<String>();
+        List<String> guestListAsText = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
 
         while (reader.readLine() != null)

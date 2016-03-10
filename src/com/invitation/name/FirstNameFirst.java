@@ -1,6 +1,6 @@
-package invitation.name;
+package com.invitation.name;
 
-public class CasualName implements Caller {
+public class FirstNameFirst implements Caller {
 
     @Override
     public String call(String title, String firstName, String lastName) {

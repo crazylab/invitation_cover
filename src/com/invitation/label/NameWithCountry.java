@@ -1,10 +1,10 @@
-package invitation.label;
+package com.invitation.label;
 
 import com.guest.Address;
 import com.guest.Age;
 import com.guest.Gender;
 import com.guest.Name;
-import invitation.name.Caller;
+import com.invitation.name.Caller;
 
 public class NameWithCountry implements InvitationPrinter {
     private Caller caller;
@@ -15,8 +15,7 @@ public class NameWithCountry implements InvitationPrinter {
 
     @Override
     public String invite(Name name, Gender gender, Age age, Address address) {
-        name.setCaller(caller);
-        String nameWithHonorific = name.call(gender.getHonorific());
+        String nameWithHonorific = name.call(gender.getHonorific(), caller);
         return address.addCountryAtTheEnd(nameWithHonorific);
     }
 }

@@ -1,4 +1,4 @@
-package invitation.label;
+package com.invitation.label;
 
 import com.guest.Address;
 import com.guest.Age;
