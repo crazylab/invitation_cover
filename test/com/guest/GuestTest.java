@@ -1,10 +1,10 @@
 package com.guest;
 
-import invitation.label.InvitationPrinter;
-import invitation.label.NameWithCountry;
-import invitation.name.Caller;
-import invitation.name.CasualName;
-import invitation.name.FormalName;
+import com.invitation.label.InvitationPrinter;
+import com.invitation.label.NameWithCountry;
+import com.invitation.name.Caller;
+import com.invitation.name.FirstNameFirst;
+import com.invitation.name.LastNameFirst;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -16,7 +16,7 @@ public class GuestTest {
         Address address = new Address("Bangalore", "Karnataka", "India");
         Guest john = new Guest(name, Gender.MALE, new Age(21), address);
 
-        Caller casualCaller = new CasualName();
+        Caller casualCaller = new FirstNameFirst();
         InvitationPrinter invitationPrinter = new NameWithCountry(casualCaller);
         assertEquals("Mr John Smith, India", john.invite(invitationPrinter));
     }
@@ -27,7 +27,7 @@ public class GuestTest {
         Address address = new Address("Bangalore", "Karnataka", "India");
         Guest maria = new Guest(name, Gender.FEMALE, new Age(21), address);
 
-        Caller casualCaller = new CasualName();
+        Caller casualCaller = new FirstNameFirst();
         InvitationPrinter invitationPrinter = new NameWithCountry(casualCaller);
         assertEquals("Ms Maria Smith, India", maria.invite(invitationPrinter));
     }
@@ -38,7 +38,7 @@ public class GuestTest {
         Address address = new Address("Bangalore", "Karnataka", "India");
         Guest john = new Guest(name, Gender.MALE, new Age(21), address);
 
-        Caller formalCaller = new FormalName();
+        Caller formalCaller = new LastNameFirst();
         InvitationPrinter invitationPrinter = new NameWithCountry(formalCaller);
         assertEquals("Mr Smith, John, India", john.invite(invitationPrinter));
     }
@@ -49,7 +49,7 @@ public class GuestTest {
         Address address = new Address("Bangalore", "Karnataka", "India");
         Guest maria = new Guest(name, Gender.FEMALE, new Age(21), address);
 
-        Caller formalCaller = new FormalName();
+        Caller formalCaller = new LastNameFirst();
         InvitationPrinter invitationPrinter = new NameWithCountry(formalCaller);
         assertEquals("Ms Smith, Maria, India", maria.invite(invitationPrinter));
     }

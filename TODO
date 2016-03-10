@@ -17,5 +17,5 @@ Priritize invitationPrinter
 
 ------------------------------------------------------------------
 read command line input as followes:
-    InvitationGenerator --formal -c country_name file_path
-    InvitationGenerator --informal -c country_name file_path
+    InvitationGenerator --firstNameFirst -c country_name file_path
+    InvitationGenerator --lastNameFirst -c country_name file_path

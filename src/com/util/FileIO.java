@@ -4,15 +4,14 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class FileIO {
-    public static List<String> readLines(String filePath) throws IOException {
-        List<String> guestListAsText = new ArrayList<>();
+    public static ArrayList<String[]> readCSVLine(String filePath) throws IOException {
+        ArrayList<String[]> guestListAsText = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
 
         while (reader.readLine() != null)
-            guestListAsText.add(reader.readLine());
+            guestListAsText.add(reader.readLine().split(","));
 
         return guestListAsText;
     }

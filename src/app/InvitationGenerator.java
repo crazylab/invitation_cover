@@ -1,12 +1,14 @@
 package app;
 
-import com.dataHandler.FileIO;
+import com.validation.ValidateByCountry;
+import com.validation.Validations;
 import com.guestList.GuestList;
-import invitation.label.InvitationPrinter;
-import invitation.label.NameWithCountry;
-import invitation.name.Caller;
-import invitation.name.CasualName;
-import invitation.name.FormalName;
+import com.invitation.label.InvitationPrinter;
+import com.invitation.label.NameWithCountry;
+import com.invitation.name.Caller;
+import com.invitation.name.FirstNameFirst;
+import com.invitation.name.LastNameFirst;
+import com.util.FileIO;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,30 +34,27 @@ public class InvitationGenerator {
                 representationFormat = args[1].toUpperCase(),
                 filePath = args[2];
 
-        ArrayList<String> guestListAsText = (ArrayList<String>) FileIO.readLines(filePath);
+        ArrayList<String[]> guestDetailsList = FileIO.readCSVLine(filePath);
 
-        GuestList guestList = new GuestList(guestListAsText);
+        GuestList guestList = GuestList.createGuestList(guestDetailsList);
 
         List<String> guests;
         Caller caller;
-        InvitationPrinter invitation;
+        InvitationPrinter invitationPrinter;
 
+        Validations validations = new Validations();
+        validations.addValidation(new ValidateByCountry(countryRequested));
         switch (representationFormat) {
             case "FORMAL":
-                caller = new FormalName();
-                invitation = new NameWithCountry(caller);
-
-                guests = guestList.inviteFrom(countryRequested, invitation);
-                for (String guest : guests)
-                    System.out.println(guest);
+                caller = new LastNameFirst();
                 break;
             default:
-                caller = new CasualName();
-                invitation = new NameWithCountry(caller);
-
-                guests = guestList.inviteFrom(countryRequested, invitation);
-                for (String guest : guests)
-                    System.out.println(guest);
+                caller = new FirstNameFirst();
         }
+        invitationPrinter = new NameWithCountry(caller);
+        guests = guestList.invite(invitationPrinter, validations);
+        for (String guest : guests)
+            System.out.println(guest);
+
     }
 }

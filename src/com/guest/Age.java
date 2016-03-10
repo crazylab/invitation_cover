@@ -6,4 +6,8 @@ public class Age {
     public Age(int age) {
         this.age = age;
     }
+
+    public boolean isEquals(int age) {
+        return this.age == age;
+    }
 }

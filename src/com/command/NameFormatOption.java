@@ -5,8 +5,8 @@ import com.invitation.name.FirstNameFirst;
 import com.invitation.name.LastNameFirst;
 
 public enum NameFormatOption {
-    firstNameFirst(new FirstNameFirst()),
-    lastNameFirst(new LastNameFirst());
+    FIRSTNAMEFIRST(new FirstNameFirst()),
+    LASTNAMEFIRST(new LastNameFirst());
 
     private Caller caller;
 
@@ -14,7 +14,7 @@ public enum NameFormatOption {
         this.caller = caller;
     }
 
-    public Caller getCaller(){
+    public Caller getCaller() {
         return caller;
     }
 }
