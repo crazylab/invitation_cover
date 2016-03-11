@@ -65,10 +65,10 @@ public class GuestListTest {
 
         Validations validations = new Validations();
         validations.addValidation(new ValidateByCountry("India"));
-        validations.addValidation(new ValidateByAge(25));
+        validations.addValidation(new ValidateByAge(40));
 
         List<String> casualInvitation = guestList.invite(labelGenerator, validations);
 
-        assertEquals("Mr Poor Guy, India, 25", casualInvitation.get(0));
+        assertEquals("Ms Human Being, India, 45", casualInvitation.get(0));
     }
 }

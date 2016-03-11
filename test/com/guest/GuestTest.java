@@ -48,7 +48,7 @@ public class GuestTest {
     @Test
     public void test_isAgeOf_gives_true_when_the_given_age_is_equals_to_the_guest_age() throws Exception {
         Guest john = Guest.createGuest("John", "Smith", "Female", "25", "Bangalore", "Karnataka", "India");
-        assertTrue(john.isAgeOf(25));
-        assertFalse(john.isAgeOf(60));
+        assertTrue(john.isOlderThan(24));
+        assertFalse(john.isOlderThan(60));
     }
 }

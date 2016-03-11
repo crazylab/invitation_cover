@@ -38,7 +38,7 @@ public class Guest {
         return address.isFromCountry(country);
     }
 
-    public boolean isAgeOf(int age) {
-        return this.age.isEquals(age);
+    public boolean isOlderThan(int age) {
+        return this.age.isOlderThan(age);
     }
 }

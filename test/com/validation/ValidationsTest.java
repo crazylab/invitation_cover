@@ -35,7 +35,7 @@ public class ValidationsTest {
     @Test
     public void test_isValid_gives_true_when_ValidateByAge_Validator_is_added_into_Validations_and_given_a_guest_with_valid_age() throws Exception {
         Validations validations = new Validations();
-        validations.addValidation(new ValidateByAge(60));
+        validations.addValidation(new ValidateByAge(59));
 
         assertTrue(validations.isValid(guest));
     }
@@ -43,7 +43,7 @@ public class ValidationsTest {
     @Test
     public void test_isValid_gives_false_when_ValidateByAge_Validator_is_added_into_Validations_and_given_a_guest_with_invalid_age() throws Exception {
         Validations validations = new Validations();
-        validations.addValidation(new ValidateByAge(21));
+        validations.addValidation(new ValidateByAge(60));
 
         assertFalse(validations.isValid(guest));
     }
@@ -51,7 +51,7 @@ public class ValidationsTest {
     @Test
     public void test_isValid_gives_true_when_all_Validator_into_Validations_are_satisfied() throws Exception {
         Validations validations = new Validations();
-        validations.addValidation(new ValidateByAge(60));
+        validations.addValidation(new ValidateByAge(59));
         validations.addValidation(new ValidateByCountry("India"));
 
         assertTrue(validations.isValid(guest));
@@ -60,7 +60,7 @@ public class ValidationsTest {
     @Test
     public void test_isValid_gives_false_when_all_Validator_into_Validations_are_not_satisfied() throws Exception {
         Validations validations = new Validations();
-        validations.addValidation(new ValidateByAge(21));
+        validations.addValidation(new ValidateByAge(61));
         validations.addValidation(new ValidateByCountry("India"));
 
         assertFalse(validations.isValid(guest));

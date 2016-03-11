@@ -7,8 +7,8 @@ public class Age{
         this.age = age;
     }
 
-    public boolean isEquals(int age) {
-        return this.age == age;
+    public boolean isOlderThan(int age) {
+        return this.age > age;
     }
 
     public String addAtTheEnd(String label) {

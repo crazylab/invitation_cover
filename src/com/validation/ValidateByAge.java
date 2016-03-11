@@ -10,6 +10,6 @@ public class ValidateByAge implements Validator {
     }
 
     public boolean isAllowed(Guest guest) {
-        return guest.isAgeOf(age);
+        return guest.isOlderThan(age);
     }
 }

@@ -1,7 +1,7 @@
 package com.command;
 
 import com.guestList.GuestList;
-import com.invitation.label.InvitationFormatter;
+import com.invitation.label.LabelGenerator;
 import com.util.IO;
 import com.validation.Validations;
 
@@ -19,9 +19,9 @@ public class CLI {
         Command command = new Command(commandArgs);
         List<String[]> guestListAsArray = io.readCSV(command.getFileName());
         GuestList guestList = GuestList.createGuestList(guestListAsArray);
-        InvitationFormatter invitationFormatter = command.getPrinter();
+        LabelGenerator labelGenerator = command.getLabelGenerator();
         Validations validator = command.getValidator();
-        List<String> labels = guestList.invite(invitationFormatter, validator);
+        List<String> labels = guestList.invite(labelGenerator, validator);
         io.print(labels);
     }
 }
