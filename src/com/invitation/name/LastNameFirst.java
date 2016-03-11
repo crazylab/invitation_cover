@@ -1,9 +1,9 @@
 package com.invitation.name;
 
-public class LastNameFirst implements Caller {
+public class LastNameFirst implements NameFormatter {
 
     @Override
-    public String call(String title, String firstName, String lastName) {
+    public String callByName(String title, String firstName, String lastName) {
         return String.format("%s %s, %s", title, lastName, firstName);
     }
 }

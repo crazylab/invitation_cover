@@ -1,6 +1,6 @@
 package com.command;
 
-import com.invitation.name.Caller;
+import com.invitation.name.NameFormatter;
 import com.invitation.name.FirstNameFirst;
 import com.invitation.name.LastNameFirst;
 
@@ -8,13 +8,13 @@ public enum NameFormatOptions {
     FIRSTNAMEFIRST(new FirstNameFirst()),
     LASTNAMEFIRST(new LastNameFirst());
 
-    private Caller caller;
+    private NameFormatter nameFormatter;
 
-    NameFormatOptions(Caller caller) {
-        this.caller = caller;
+    NameFormatOptions(NameFormatter nameFormatter) {
+        this.nameFormatter = nameFormatter;
     }
 
-    public Caller getCaller() {
-        return caller;
+    public NameFormatter getNameFormatter() {
+        return nameFormatter;
     }
 }

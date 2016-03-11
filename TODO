@@ -17,5 +17,5 @@ Priritize invitationFormatter
 
 ------------------------------------------------------------------
 read command line input as followes:
-    InvitationGenerator --firstNameFirst --country country_name --age age file_path
-    InvitationGenerator --lastNameFirst --country country_name --age age file_path
+    InvitationGenerator --firstNameFirst --country country_name --ageabove age file_path
+    InvitationGenerator --lastNameFirst --country country_name --ageabove age file_path

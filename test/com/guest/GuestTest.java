@@ -2,7 +2,7 @@ package com.guest;
 
 import com.invitation.label.WithAge;
 import com.invitation.label.WithCountry;
-import com.invitation.name.Caller;
+import com.invitation.name.NameFormatter;
 import com.invitation.name.FirstNameFirst;
 import com.invitation.name.LastNameFirst;
 import org.junit.Test;
@@ -15,15 +15,15 @@ public class GuestTest {
     @Test
     public void test_generateName_generates_the_name_with_the_FirstNameFirst_format() throws Exception {
         Guest john = Guest.createGuest("John", "Smith", "Male", "25", "Bangalore", "Karnataka", "India");
-        Caller caller = new FirstNameFirst();
-        assertEquals("Mr John Smith", john.generateName(caller));
+        NameFormatter nameFormatter = new FirstNameFirst();
+        assertEquals("Mr John Smith", john.generateName(nameFormatter));
     }
 
     @Test
     public void test_generateName_generates_the_name_with_the_LastNameFirst_format() throws Exception {
         Guest john = Guest.createGuest("John", "Smith", "Female", "25", "Bangalore", "Karnataka", "India");
-        Caller caller = new LastNameFirst();
-        assertEquals("Ms Smith, John", john.generateName(caller));
+        NameFormatter nameFormatter = new LastNameFirst();
+        assertEquals("Ms Smith, John", john.generateName(nameFormatter));
     }
 
     @Test
