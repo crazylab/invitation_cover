@@ -2,28 +2,22 @@ package com.guest;
 
 import com.invitation.label.WithAge;
 import com.invitation.label.WithCountry;
-import com.invitation.name.NameFormatter;
-import com.invitation.name.FirstNameFirst;
-import com.invitation.name.LastNameFirst;
+import com.invitation.name.NameFormat;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class GuestTest {
     @Test
     public void test_generateName_generates_the_name_with_the_FirstNameFirst_format() throws Exception {
         Guest john = Guest.createGuest("John", "Smith", "Male", "25", "Bangalore", "Karnataka", "India");
-        NameFormatter nameFormatter = new FirstNameFirst();
-        assertEquals("Mr John Smith", john.generateName(nameFormatter));
+        assertEquals("Mr John Smith", john.generateName(NameFormat.FIRSTNAMEFIRST));
     }
 
     @Test
     public void test_generateName_generates_the_name_with_the_LastNameFirst_format() throws Exception {
         Guest john = Guest.createGuest("John", "Smith", "Female", "25", "Bangalore", "Karnataka", "India");
-        NameFormatter nameFormatter = new LastNameFirst();
-        assertEquals("Ms Smith, John", john.generateName(nameFormatter));
+        assertEquals("Ms Smith, John", john.generateName(NameFormat.LASTNAMEFIRST));
     }
 
     @Test

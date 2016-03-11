@@ -5,7 +5,7 @@ import com.util.IO;
 
 import java.io.IOException;
 
-public class LabelGenerator {
+public class InvitationLabelGenerator {
     public static void main(String[] command) throws IOException {
         IO io = new IO();
         CLI cli = new CLI(io);

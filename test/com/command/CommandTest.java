@@ -1,6 +1,6 @@
 //package com.command;
 //
-//import com.invitation.label.LabelGenerator;
+//import com.invitation.label.InvitationLabelGenerator;
 //import org.junit.Before;
 //import org.junit.Test;
 //
@@ -24,7 +24,7 @@
 //
 //    @Test
 //    public void test_getPrinter_gives_the_printer_that_is_needed_to_print_the_label_with_name_and_country() throws Exception {
-//        assertTrue(commandNameWithCountry.getLabelGenerator() instanceof LabelGenerator);
+//        assertTrue(commandNameWithCountry.getLabelGenerator() instanceof InvitationLabelGenerator);
 //    }
 //
 //    @Test

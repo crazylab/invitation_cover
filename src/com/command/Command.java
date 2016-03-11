@@ -3,7 +3,7 @@ package com.command;
 import com.invitation.label.LabelGenerator;
 import com.invitation.label.WithAge;
 import com.invitation.label.WithCountry;
-import com.invitation.name.NameFormatter;
+import com.invitation.name.NameFormat;
 import com.validation.ValidateByAge;
 import com.validation.ValidateByCountry;
 import com.validation.Validations;
@@ -24,9 +24,9 @@ public class Command {
         return command[command.length - 1];
     }
 
-    private NameFormatter getCallingFormat() {
+    private NameFormat getCallingFormat() {
         String nameFormat = command[0].replace("--", "").toUpperCase();
-        return NameFormatOptions.valueOf(nameFormat).getNameFormatter();
+        return NameFormat.valueOf(nameFormat);
     }
 
     public LabelGenerator getLabelGenerator() {

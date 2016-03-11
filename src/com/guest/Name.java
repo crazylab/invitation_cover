@@ -1,6 +1,6 @@
 package com.guest;
 
-import com.invitation.name.NameFormatter;
+import com.invitation.name.NameFormat;
 
 public class Name {
     private String first;
@@ -12,7 +12,7 @@ public class Name {
         this.last = lastName;
     }
 
-    public String call(String prefix, NameFormatter nameFormatter){
-        return nameFormatter.callByName(prefix, first, last);
+    public String callWithTitle(String prefix, NameFormat nameFormat){
+        return nameFormat.callWithTitle(prefix, first, last);
     }
 }

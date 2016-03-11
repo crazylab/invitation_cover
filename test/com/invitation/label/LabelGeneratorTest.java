@@ -1,7 +1,7 @@
 package com.invitation.label;
 
 import com.guest.Guest;
-import com.invitation.name.FirstNameFirst;
+import com.invitation.name.NameFormat;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,7 +18,7 @@ public class LabelGeneratorTest {
 
     @Test
     public void test_genetateLabel_generates_label_with_country() throws Exception {
-        LabelGenerator labelGenerator = new LabelGenerator(new FirstNameFirst());
+        LabelGenerator labelGenerator = new LabelGenerator(NameFormat.FIRSTNAMEFIRST);
         labelGenerator.addFormat(new WithCountry());
 
         assertEquals("Mr Ramu Kaka, India", labelGenerator.genetateLabel(guest));
@@ -26,7 +26,7 @@ public class LabelGeneratorTest {
 
     @Test
     public void test_genetateLabel_generates_label_with_age() throws Exception {
-        LabelGenerator labelGenerator = new LabelGenerator(new FirstNameFirst());
+        LabelGenerator labelGenerator = new LabelGenerator(NameFormat.FIRSTNAMEFIRST);
         labelGenerator.addFormat(new WithAge());
 
         assertEquals("Mr Ramu Kaka, 60", labelGenerator.genetateLabel(guest));
@@ -34,7 +34,7 @@ public class LabelGeneratorTest {
 
     @Test
     public void test_genetateLabel_generates_label_with_country_and_age() throws Exception {
-        LabelGenerator labelGenerator = new LabelGenerator(new FirstNameFirst());
+        LabelGenerator labelGenerator = new LabelGenerator(NameFormat.FIRSTNAMEFIRST);
         labelGenerator.addFormat(new WithCountry());
         labelGenerator.addFormat(new WithAge());
 

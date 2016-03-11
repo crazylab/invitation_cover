@@ -1,7 +1,7 @@
 package com.guest;
 
 import com.invitation.label.InvitationFormatter;
-import com.invitation.name.NameFormatter;
+import com.invitation.name.NameFormat;
 
 public class Guest {
     private Name name;
@@ -23,8 +23,8 @@ public class Guest {
         return invitationFormatter.addLabel(currentLabel, gender, age, address);
     }
 
-    public String generateName(NameFormatter nameFormatter) {
-        return name.call(gender.getHonorific(), nameFormatter);
+    public String generateName(NameFormat nameFormat) {
+        return name.callWithTitle(gender.getHonorific(), nameFormat);
     }
 
     public Guest(Name name, Gender gender, Age age, Address address) {

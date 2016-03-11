@@ -4,8 +4,7 @@ import com.guestList.GuestList;
 import com.invitation.label.LabelGenerator;
 import com.invitation.label.WithAge;
 import com.invitation.label.WithCountry;
-import com.invitation.name.FirstNameFirst;
-import com.invitation.name.LastNameFirst;
+import com.invitation.name.NameFormat;
 import com.validation.ValidateByAge;
 import com.validation.ValidateByCountry;
 import com.validation.Validations;
@@ -32,7 +31,7 @@ public class GuestListTest {
 
     @Test
     public void testInviteFrom_gives_the_formal_invitation_for_all_the_guests_from_a_specific_country() throws Exception {
-        LabelGenerator labelGenerator = new LabelGenerator(new LastNameFirst());
+        LabelGenerator labelGenerator = new LabelGenerator(NameFormat.LASTNAMEFIRST);
         labelGenerator.addFormat(new WithCountry());
 
         Validations validations = new Validations();
@@ -46,7 +45,7 @@ public class GuestListTest {
 
     @Test
     public void testInviteFrom_gives_the_casual_invitation_for_all_the_guests_from_a_specific_country() throws Exception {
-        LabelGenerator labelGenerator = new LabelGenerator(new FirstNameFirst());
+        LabelGenerator labelGenerator = new LabelGenerator(NameFormat.FIRSTNAMEFIRST);
         labelGenerator.addFormat(new WithCountry());
 
         Validations validations = new Validations();
@@ -59,7 +58,7 @@ public class GuestListTest {
 
     @Test
     public void testInviteFrom_gives_the_casual_invitation_with_country_and_age_for_all_the_guests_from_a_specific_country_and_having_certain_age() throws Exception {
-        LabelGenerator labelGenerator = new LabelGenerator(new FirstNameFirst());
+        LabelGenerator labelGenerator = new LabelGenerator(NameFormat.FIRSTNAMEFIRST);
         labelGenerator.addFormat(new WithCountry());
         labelGenerator.addFormat(new WithAge());
 
