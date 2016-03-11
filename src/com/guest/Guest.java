@@ -1,6 +1,7 @@
 package com.guest;
 
-import com.invitation.label.InvitationGenerator;
+import com.invitation.label.InvitationFormatter;
+import com.invitation.name.Caller;
 
 public class Guest {
     private Name name;
@@ -18,8 +19,12 @@ public class Guest {
         return new Guest(name, gender, new Age(Integer.parseInt(age)), address);
     }
 
-    public String invite(InvitationGenerator invitationGenerator) {
-        return invitationGenerator.invite(name, gender, age, address);
+    public String addLabel(String currentLabel, InvitationFormatter invitationFormatter) {
+        return invitationFormatter.addLabel(currentLabel, gender, age, address);
+    }
+
+    public String generateName(Caller caller) {
+        return name.call(gender.getHonorific(), caller);
     }
 
     public Guest(Name name, Gender gender, Age age, Address address) {

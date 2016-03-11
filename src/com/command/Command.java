@@ -1,14 +1,14 @@
 package com.command;
 
-import com.invitation.label.InvitationGenerator;
-import com.invitation.label.NameWithCountry;
+import com.invitation.label.InvitationFormatter;
+import com.invitation.label.WithCountry;
 import com.invitation.name.Caller;
 import com.validation.ValidateByCountry;
 import com.validation.Validations;
 
 public class Command {
     private String[] command;
-    private InvitationGenerator printer;
+//    private InvitationFormatter printer;
     private Validations validator = new Validations();
 
     public Command(String[] command) {
@@ -19,10 +19,13 @@ public class Command {
         return command[command.length - 1];
     }
 
-    public InvitationGenerator getPrinter() {
-        String nameFormat = command[0].toUpperCase().replace("--","");
-        Caller caller = NameFormatOptions.valueOf(nameFormat).getCaller();
-        return new NameWithCountry(caller);
+    private Caller getCallingFormat() {
+        String nameFormat = command[0].toUpperCase().replace("--", "");
+        return NameFormatOptions.valueOf(nameFormat).getCaller();
+    }
+
+    public InvitationFormatter getPrinter() {
+        return new WithCountry(getCallingFormat());
     }
 
     public Validations getValidator() {

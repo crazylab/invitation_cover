@@ -13,7 +13,7 @@ Output:
         Male -> Mr
         Female -> Ms
 
-Priritize invitationGenerator
+Priritize invitationFormatter
 
 ------------------------------------------------------------------
 read command line input as followes:

@@ -1,13 +1,14 @@
 package guestList;
 
-import com.invitation.label.InvitationGenerator;
-import com.validation.ValidateByCountry;
-import com.validation.Validations;
 import com.guestList.GuestList;
-import com.invitation.label.NameWithCountry;
-import com.invitation.name.Caller;
+import com.invitation.label.LabelGenerator;
+import com.invitation.label.WithAge;
+import com.invitation.label.WithCountry;
 import com.invitation.name.FirstNameFirst;
 import com.invitation.name.LastNameFirst;
+import com.validation.ValidateByAge;
+import com.validation.ValidateByCountry;
+import com.validation.Validations;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,35 +25,50 @@ public class GuestListTest {
         List<String[]> guestDetailsList = new ArrayList<>();
         guestDetailsList.add("Human,Being,Female,45,New Delhi,Delhi,India".split(","));
         guestDetailsList.add("US,Guest,Male,4,Las Vegas,Texas,USA".split(","));
-        guestDetailsList.add("Poor,guy,Male,25,Mumbai,Maharastra,India".split(","));
+        guestDetailsList.add("Poor,Guy,Male,25,Mumbai,Maharastra,India".split(","));
         guestDetailsList.add("Aaguner,gola,Female,20,Dhaka,Chittagaon,Bangladesh".split(","));
         guestList = GuestList.createGuestList(guestDetailsList);
     }
 
     @Test
     public void testInviteFrom_gives_the_formal_invitation_for_all_the_guests_from_a_specific_country() throws Exception {
-        Caller caller = new LastNameFirst();
-        InvitationGenerator invitationGenerator = new NameWithCountry(caller);
+        LabelGenerator labelGenerator = new LabelGenerator(new LastNameFirst());
+        labelGenerator.addFormat(new WithCountry());
 
         Validations validations = new Validations();
         validations.addValidation(new ValidateByCountry("India"));
 
-        List<String> formalInvitation = guestList.invite(invitationGenerator, validations);
+        List<String> formalInvitation = guestList.invite(labelGenerator, validations);
 
-        assertEquals(formalInvitation.get(0), "Ms Being, Human, India");
-        assertEquals(formalInvitation.get(1), "Mr guy, Poor, India");
+        assertEquals("Ms Being, Human, India", formalInvitation.get(0));
+        assertEquals("Mr Guy, Poor, India", formalInvitation.get(1));
     }
 
     @Test
     public void testInviteFrom_gives_the_casual_invitation_for_all_the_guests_from_a_specific_country() throws Exception {
-        Caller caller = new FirstNameFirst();
-        InvitationGenerator invitationGenerator = new NameWithCountry(caller);
+        LabelGenerator labelGenerator = new LabelGenerator(new FirstNameFirst());
+        labelGenerator.addFormat(new WithCountry());
 
         Validations validations = new Validations();
         validations.addValidation(new ValidateByCountry("USA"));
 
-        List<String> casualInvitation = guestList.invite(invitationGenerator, validations);
+        List<String> casualInvitation = guestList.invite(labelGenerator, validations);
 
-        assertEquals(casualInvitation.get(0), "Mr US Guest, USA");
+        assertEquals("Mr US Guest, USA", casualInvitation.get(0));
+    }
+
+    @Test
+    public void testInviteFrom_gives_the_casual_invitation_with_country_and_age_for_all_the_guests_from_a_specific_country_and_having_certain_age() throws Exception {
+        LabelGenerator labelGenerator = new LabelGenerator(new FirstNameFirst());
+        labelGenerator.addFormat(new WithCountry());
+        labelGenerator.addFormat(new WithAge());
+
+        Validations validations = new Validations();
+        validations.addValidation(new ValidateByCountry("India"));
+        validations.addValidation(new ValidateByAge(25));
+
+        List<String> casualInvitation = guestList.invite(labelGenerator, validations);
+
+        assertEquals("Mr Poor Guy, India, 25", casualInvitation.get(0));
     }
 }

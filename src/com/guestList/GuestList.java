@@ -1,8 +1,8 @@
 package com.guestList;
 
-import com.invitation.label.InvitationGenerator;
-import com.validation.Validations;
 import com.guest.Guest;
+import com.invitation.label.LabelGenerator;
+import com.validation.Validations;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,35 +21,11 @@ public class GuestList {
         this.guestList = guestList;
     }
 
-    public List<String> invite(InvitationGenerator invitationGenerator, Validations filter){
+    public List<String> invite(LabelGenerator labelGenerator, Validations filter){
         List<String> invitationLabels = new ArrayList<>();
         for (Guest guest : guestList)
             if(filter.isValid(guest))
-                invitationLabels.add(guest.invite(invitationGenerator));
+                invitationLabels.add(labelGenerator.genetateLabel(guest));
         return invitationLabels;
     }
-//    public void addGuest(Guest guest){
-//        guestList.add(guest);
-//    }
-
-//    private List<Guest> getGuestsFrom(String country) {
-//        List<Guest> guestFromRequestedCountry = new ArrayList<>();
-//        for (Guest guest : guestList) {
-//            if (guest.isFromCountry(country)) {
-//                guestFromRequestedCountry.add(guest);
-//            }
-//        }
-//
-//        return guestFromRequestedCountry;
-//    }
-//
-//    public List<String> inviteFrom(LabelGenerator invitationPrinter) {
-//        List<Guest> guestFromRequestedCountry = getGuestsFrom(country);
-//        List<String> invitationLabels = new ArrayList<>();
-//
-//        for (Guest guest : guestFromRequestedCountry) {
-//            invitationLabels.add(guest.invite(invitationPrinter));
-//        }
-//        return invitationLabels;
-//    }
 }

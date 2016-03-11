@@ -1,6 +1,6 @@
 package com.guest;
 
-public class Age {
+public class Age{
     private int age;
 
     public Age(int age) {
@@ -9,5 +9,9 @@ public class Age {
 
     public boolean isEquals(int age) {
         return this.age == age;
+    }
+
+    public String addAtTheEnd(String label) {
+        return label.concat(", "+age);
     }
 }

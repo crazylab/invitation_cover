@@ -1,56 +1,54 @@
 package com.guest;
 
-import com.invitation.label.InvitationGenerator;
-import com.invitation.label.NameWithCountry;
+import com.invitation.label.WithAge;
+import com.invitation.label.WithCountry;
 import com.invitation.name.Caller;
 import com.invitation.name.FirstNameFirst;
 import com.invitation.name.LastNameFirst;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class GuestTest {
     @Test
-    public void testInvite_gives_the_casual_invitation_for_male_when_invitation_is_informal() throws Exception {
-        Name name = new Name("John", "Smith");
-        Address address = new Address("Bangalore", "Karnataka", "India");
-        Guest john = new Guest(name, Gender.MALE, new Age(21), address);
-
-        Caller casualCaller = new FirstNameFirst();
-        InvitationGenerator invitationGenerator = new NameWithCountry(casualCaller);
-        assertEquals("Mr John Smith, India", john.invite(invitationGenerator));
+    public void test_generateName_generates_the_name_with_the_FirstNameFirst_format() throws Exception {
+        Guest john = Guest.createGuest("John", "Smith", "Male", "25", "Bangalore", "Karnataka", "India");
+        Caller caller = new FirstNameFirst();
+        assertEquals("Mr John Smith", john.generateName(caller));
     }
 
     @Test
-    public void testInvite_gives_the_casual_invitation_for_female() throws Exception {
-        Name name = new Name("Maria", "Smith");
-        Address address = new Address("Bangalore", "Karnataka", "India");
-        Guest maria = new Guest(name, Gender.FEMALE, new Age(21), address);
-
-        Caller casualCaller = new FirstNameFirst();
-        InvitationGenerator invitationGenerator = new NameWithCountry(casualCaller);
-        assertEquals("Ms Maria Smith, India", maria.invite(invitationGenerator));
+    public void test_generateName_generates_the_name_with_the_LastNameFirst_format() throws Exception {
+        Guest john = Guest.createGuest("John", "Smith", "Female", "25", "Bangalore", "Karnataka", "India");
+        Caller caller = new LastNameFirst();
+        assertEquals("Ms Smith, John", john.generateName(caller));
     }
 
     @Test
-    public void testInvite_gives_the_formal_invitation_for_male() throws Exception {
-        Name name = new Name("John", "Smith");
-        Address address = new Address("Bangalore", "Karnataka", "India");
-        Guest john = new Guest(name, Gender.MALE, new Age(21), address);
-
-        Caller formalCaller = new LastNameFirst();
-        InvitationGenerator invitationGenerator = new NameWithCountry(formalCaller);
-        assertEquals("Mr Smith, John, India", john.invite(invitationGenerator));
+    public void test_addLabel_adds_the_Country_at_the_end_of_the_given_label() throws Exception {
+        Guest john = Guest.createGuest("John", "Smith", "Female", "25", "Bangalore", "Karnataka", "India");
+        assertEquals("Ms Smith, John, India", john.addLabel("Ms Smith, John", new WithCountry()));
     }
 
     @Test
-    public void testInvite_gives_the_formal_invitation_for_female() throws Exception {
-        Name name = new Name("Maria", "Smith");
-        Address address = new Address("Bangalore", "Karnataka", "India");
-        Guest maria = new Guest(name, Gender.FEMALE, new Age(21), address);
+    public void test_addLabel_adds_the_Age_at_the_end_of_the_given_label() throws Exception {
+        Guest john = Guest.createGuest("John", "Smith", "Female", "25", "Bangalore", "Karnataka", "India");
+        assertEquals("Ms Smith, John, 25", john.addLabel("Ms Smith, John", new WithAge()));
+    }
 
-        Caller formalCaller = new LastNameFirst();
-        InvitationGenerator invitationGenerator = new NameWithCountry(formalCaller);
-        assertEquals("Ms Smith, Maria, India", maria.invite(invitationGenerator));
+    @Test
+    public void test_isFromCountry_gives_true_when_the_given_country_is_equals_to_the_guest_country() throws Exception {
+        Guest john = Guest.createGuest("John", "Smith", "Male", "25", "Bangalore", "Karnataka", "India");
+        assertTrue(john.isFromCountry("India"));
+        assertFalse(john.isFromCountry("USA"));
+    }
+
+    @Test
+    public void test_isAgeOf_gives_true_when_the_given_age_is_equals_to_the_guest_age() throws Exception {
+        Guest john = Guest.createGuest("John", "Smith", "Female", "25", "Bangalore", "Karnataka", "India");
+        assertTrue(john.isAgeOf(25));
+        assertFalse(john.isAgeOf(60));
     }
 }
