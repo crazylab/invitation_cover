@@ -44,12 +44,121 @@ public class CLITest {
     }
 
     @Test
-    public void test_runCommand_runs_the_given_command() throws Exception {
+    public void test_runCommand_runs_the_given_command_when_asked_for_first_name_first_with_age_and_country_condition() throws Exception {
         cli.runCommand("--firstNameFirst --country Bangladesh --ageabove 28 file_path".split(" "));
         List<String> expected = new ArrayList<>();
 
-        expected.add("+---------------------+\n| Ms Gerry Walter     |\n|---------------------|\n| New Alanna, Vermont |\n| Bangladesh          |\n+---------------------+");
-        expected.add("+---------------------+\n| Mr Major Durgan     |\n|---------------------|\n| Veda haven, Georgia |\n| Bangladesh          |\n+---------------------+");
+        expected.add(
+            "+---------------------+\n" +
+            "| Ms Gerry Walter     |\n" +
+            "|---------------------|\n" +
+            "| New Alanna, Vermont |\n" +
+            "| Bangladesh          |\n" +
+            "+---------------------+"
+        );
+        expected.add(
+            "+---------------------+\n" +
+            "| Mr Major Durgan     |\n" +
+            "|---------------------|\n" +
+            "| Veda haven, Georgia |\n" +
+            "| Bangladesh          |\n" +
+            "+---------------------+");
+
+        for (int i = 0; i < results.size(); i++)
+            assertEquals(expected.get(i), results.get(i));
+    }
+
+    @Test
+    public void test_runCommand_runs_the_given_command_when_asked_for_last_name_first_with_age_and_country_condition() throws Exception {
+        cli.runCommand("--lastNameFirst --country Bangladesh --ageabove 28 file_path".split(" "));
+        List<String> expected = new ArrayList<>();
+
+        expected.add(
+            "+---------------------+\n"+
+            "| Ms Walter, Gerry    |\n"+
+            "|---------------------|\n"+
+            "| New Alanna, Vermont |\n"+
+            "| Bangladesh          |\n"+
+            "+---------------------+"
+        );
+        expected.add(
+            "+---------------------+\n" +
+            "| Mr Durgan, Major    |\n" +
+            "|---------------------|\n" +
+            "| Veda haven, Georgia |\n" +
+            "| Bangladesh          |\n" +
+            "+---------------------+"
+        );
+
+        for (int i = 0; i < results.size(); i++)
+            assertEquals(expected.get(i), results.get(i));
+    }
+
+    @Test
+    public void test_runCommand_runs_the_given_command_when_asked_for_first_name_first_with_country_condition_only() throws Exception {
+        cli.runCommand("--firstNameFirst --country Bangladesh file_path".split(" "));
+        List<String> expected = new ArrayList<>();
+
+        expected.add(
+            "+------------------------------+\n" +
+            "| Mr Ashly Denesik             |\n" +
+            "|------------------------------|\n" +
+            "| Katlynn view, South Carolina |\n" +
+            "| Bangladesh                   |\n" +
+            "+------------------------------+"
+        );
+        expected.add(
+            "+---------------------+\n" +
+            "| Ms Gerry Walter     |\n" +
+            "|---------------------|\n" +
+            "| New Alanna, Vermont |\n" +
+            "| Bangladesh          |\n" +
+            "+---------------------+"
+        );
+        expected.add(
+            "+---------------------+\n" +
+            "| Mr Major Durgan     |\n" +
+            "|---------------------|\n" +
+            "| Veda haven, Georgia |\n" +
+            "| Bangladesh          |\n" +
+            "+---------------------+"
+        );
+
+        for (int i = 0; i < results.size(); i++)
+            assertEquals(expected.get(i), results.get(i));
+    }
+
+    @Test
+    public void test_runCommand_runs_the_given_command_when_asked_for_first_name_first_with_age_condition_only() throws Exception {
+        cli.runCommand("--firstNameFirst --ageabove 28 file_path".split(" "));
+        List<String> expected = new ArrayList<>();
+
+        expected.add(
+            "+-----------------------+\n" +
+            "| Ms Alice Ruecker      |\n" +
+            "|-----------------------|\n" +
+            "| West Shanna, Illinois |\n" +
+            "| Romania               |\n" +
+            "+-----------------------+"
+        );
+
+
+        expected.add(
+            "+---------------------+\n" +
+            "| Ms Gerry Walter     |\n" +
+            "|---------------------|\n" +
+            "| New Alanna, Vermont |\n" +
+            "| Bangladesh          |\n" +
+            "+---------------------+"
+        );
+        expected.add(
+                "+---------------------+\n" +
+                "| Mr Major Durgan     |\n" +
+                "|---------------------|\n" +
+                "| Veda haven, Georgia |\n" +
+                "| Bangladesh          |\n" +
+                "+---------------------+"
+        );
 
         for (int i = 0; i < results.size(); i++)
             assertEquals(expected.get(i), results.get(i));

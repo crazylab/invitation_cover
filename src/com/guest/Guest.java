@@ -19,19 +19,19 @@ public class Guest {
         return new Guest(name, gender, new Age(Integer.parseInt(age)), address);
     }
 
+    public Guest(Name name, Gender gender, Age age, Address address) {
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+        this.address = address;
+    }
+
     public String generateAddress(Formatter formatter) {
         return address.represent(formatter);
     }
 
     public String generateName(NameFormat nameFormat) {
         return name.callWithTitle(gender.getHonorific(), nameFormat);
-    }
-
-    public Guest(Name name, Gender gender, Age age, Address address) {
-        this.name = name;
-        this.gender = gender;
-        this.age = age;
-        this.address = address;
     }
 
     public boolean isFromCountry(String country) {

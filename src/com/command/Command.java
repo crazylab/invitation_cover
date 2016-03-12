@@ -1,7 +1,7 @@
 package com.command;
 
 import com.invitation.label.LabelGenerator;
-import com.invitation.label.WithAddress;
+import com.invitation.label.WithFullAddress;
 import com.invitation.name.NameFormat;
 import com.validation.ValidateByAge;
 import com.validation.ValidateByCountry;
@@ -33,7 +33,7 @@ public class Command {
     }
 
     private void parseCommand() {
-        labelGenerator = new LabelGenerator(getNameFormat(), new WithAddress());
+        labelGenerator = new LabelGenerator(getNameFormat(), new WithFullAddress());
         int ageLimitIndex = Arrays.asList(command).indexOf("--ageabove")+ 1;
         int countryIndex = Arrays.asList(command).indexOf("--country") + 1;
 

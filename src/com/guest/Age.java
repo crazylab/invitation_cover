@@ -10,8 +10,4 @@ public class Age{
     public boolean isOlderThan(int age) {
         return this.age > age;
     }
-
-    public String addAtTheEnd(String label) {
-        return label.concat(", "+age);
-    }
 }
