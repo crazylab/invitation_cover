@@ -1,8 +1,7 @@
 package com.command;
 
 import com.invitation.label.LabelGenerator;
-import com.invitation.label.WithAge;
-import com.invitation.label.WithCountry;
+import com.invitation.label.WithAddress;
 import com.invitation.name.NameFormat;
 import com.validation.ValidateByAge;
 import com.validation.ValidateByCountry;
@@ -24,7 +23,7 @@ public class Command {
         return command[command.length - 1];
     }
 
-    private NameFormat getCallingFormat() {
+    private NameFormat getNameFormat() {
         String nameFormat = command[0].replace("--", "").toUpperCase();
         return NameFormat.valueOf(nameFormat);
     }
@@ -34,16 +33,13 @@ public class Command {
     }
 
     private void parseCommand() {
-        labelGenerator = new LabelGenerator(getCallingFormat());
+        labelGenerator = new LabelGenerator(getNameFormat(), new WithAddress());
         int ageLimitIndex = Arrays.asList(command).indexOf("--ageabove")+ 1;
         int countryIndex = Arrays.asList(command).indexOf("--country") + 1;
 
-        if(countryIndex != 0) {
-            labelGenerator.addFormat(new WithCountry());
+        if(countryIndex != 0)
             validations.addValidation(new ValidateByCountry(command[countryIndex]));
-        }
         if(ageLimitIndex != 0){
-            labelGenerator.addFormat(new WithAge());
             validations.addValidation(new ValidateByAge(Integer.parseInt(command[ageLimitIndex])));
         }
     }

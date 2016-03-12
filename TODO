@@ -13,8 +13,6 @@ Output:
         Male -> Mr
         Female -> Ms
 
-Priritize invitationFormatter
-
 ------------------------------------------------------------------
 read command line input as followes:
     InvitationGenerator --firstNameFirst --country country_name --ageabove age file_path

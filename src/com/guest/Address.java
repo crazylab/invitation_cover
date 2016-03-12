@@ -1,5 +1,7 @@
 package com.guest;
 
+import com.invitation.label.Formatter;
+
 public class Address {
     private String city;
 
@@ -17,7 +19,7 @@ public class Address {
         return this.country.equalsIgnoreCase(country);
     }
 
-    public String addCountryAtTheEnd(String label){
-        return label.concat(", "+country);
+    public String represent(Formatter format){
+        return format.generate(city, state, country);
     }
 }

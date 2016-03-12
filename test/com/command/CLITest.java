@@ -47,8 +47,9 @@ public class CLITest {
     public void test_runCommand_runs_the_given_command() throws Exception {
         cli.runCommand("--firstNameFirst --country Bangladesh --ageabove 28 file_path".split(" "));
         List<String> expected = new ArrayList<>();
-        expected.add("Ms Gerry Walter, Bangladesh, 31");
-        expected.add("Mr Major Durgan, Bangladesh, 29");
+
+        expected.add("+---------------------+\n| Ms Gerry Walter     |\n|---------------------|\n| New Alanna, Vermont |\n| Bangladesh          |\n+---------------------+");
+        expected.add("+---------------------+\n| Mr Major Durgan     |\n|---------------------|\n| Veda haven, Georgia |\n| Bangladesh          |\n+---------------------+");
 
         for (int i = 0; i < results.size(); i++)
             assertEquals(expected.get(i), results.get(i));

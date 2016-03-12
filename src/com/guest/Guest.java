@@ -1,6 +1,6 @@
 package com.guest;
 
-import com.invitation.label.InvitationFormatter;
+import com.invitation.label.Formatter;
 import com.invitation.name.NameFormat;
 
 public class Guest {
@@ -19,8 +19,8 @@ public class Guest {
         return new Guest(name, gender, new Age(Integer.parseInt(age)), address);
     }
 
-    public String addLabel(String currentLabel, InvitationFormatter invitationFormatter) {
-        return invitationFormatter.addLabel(currentLabel, gender, age, address);
+    public String generateAddress(Formatter formatter) {
+        return address.represent(formatter);
     }
 
     public String generateName(NameFormat nameFormat) {
