@@ -5,14 +5,15 @@ import com.guest.Age;
 import com.validation.Validator;
 
 public class ValidateByCountry implements Validator {
-    String country;
 
-    public ValidateByCountry(String country) {
-        this.country = country;
+    private CountryPredicate countryPredicate;
+
+    public ValidateByCountry(CountryPredicate countryPredicate) {
+        this.countryPredicate = countryPredicate;
     }
 
     @Override
     public boolean isAllowed(Age age, Address address) {
-        return address.isAllowed(new FromCountry(this.country));
+        return address.isAllowed(countryPredicate);
     }
 }

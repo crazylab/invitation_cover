@@ -1,7 +1,9 @@
 package com.validation;
 
 import com.guest.Guest;
+import com.validation.age.OlderThan;
 import com.validation.age.ValidateByAge;
+import com.validation.country.FromCountry;
 import com.validation.country.ValidateByCountry;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,7 +25,7 @@ public class ValidationsTest {
     @Test
     public void test_isValid_gives_true_when_ValidateByCountry_Validator_is_added_into_Validations_and_given_a_guest_with_valid_country() throws Exception {
         ArrayList<Validator> validators = new ArrayList<>();
-        validators.add(new ValidateByCountry("India"));
+        validators.add(new ValidateByCountry(new FromCountry("India")));
 
         Validations validations = new Validations(validators);
         assertTrue(validations.isValid(guest));
@@ -32,7 +34,7 @@ public class ValidationsTest {
     @Test
     public void test_isValid_gives_false_when_ValidateByCountry_Validator_is_added_into_Validations_and_given_a_guest_with_invalid_country() throws Exception {
         ArrayList<Validator> validators = new ArrayList<>();
-        validators.add(new ValidateByCountry("Qatar"));
+        validators.add(new ValidateByCountry(new FromCountry("Qatar")));
 
         Validations validations = new Validations(validators);
         assertFalse(validations.isValid(guest));
@@ -41,7 +43,7 @@ public class ValidationsTest {
     @Test
     public void test_isValid_gives_true_when_ValidateByAge_Validator_is_added_into_Validations_and_given_a_guest_with_valid_age() throws Exception {
         ArrayList<Validator> validators = new ArrayList<>();
-        validators.add(new ValidateByAge(59));
+        validators.add(new ValidateByAge(new OlderThan(59)));
 
         Validations validations = new Validations(validators);
         assertTrue(validations.isValid(guest));
@@ -50,7 +52,7 @@ public class ValidationsTest {
     @Test
     public void test_isValid_gives_false_when_ValidateByAge_Validator_is_added_into_Validations_and_given_a_guest_with_invalid_age() throws Exception {
         ArrayList<Validator> validators = new ArrayList<>();
-        validators.add(new ValidateByAge(60));
+        validators.add(new ValidateByAge(new OlderThan(60)));
 
         Validations validations = new Validations(validators);
         assertFalse(validations.isValid(guest));
@@ -59,8 +61,8 @@ public class ValidationsTest {
     @Test
     public void test_isValid_gives_true_when_all_Validator_into_Validations_are_satisfied() throws Exception {
         ArrayList<Validator> validators = new ArrayList<>();
-        validators.add(new ValidateByAge(59));
-        validators.add(new ValidateByCountry("India"));
+        validators.add(new ValidateByAge(new OlderThan(59)));
+        validators.add(new ValidateByCountry(new FromCountry("India")));
 
         Validations validations = new Validations(validators);
         assertTrue(validations.isValid(guest));
@@ -69,8 +71,8 @@ public class ValidationsTest {
     @Test
     public void test_isValid_gives_false_when_all_Validator_into_Validations_are_not_satisfied() throws Exception {
         ArrayList<Validator> validators = new ArrayList<>();
-        validators.add(new ValidateByAge(61));
-        validators.add(new ValidateByCountry("India"));
+        validators.add(new ValidateByAge(new OlderThan(61)));
+        validators.add(new ValidateByCountry(new FromCountry("India")));
 
         Validations validations = new Validations(validators);
         assertFalse(validations.isValid(guest));

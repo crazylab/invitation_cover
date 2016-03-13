@@ -2,7 +2,9 @@ package com.guest;
 
 import com.invitation.label.WithFullAddress;
 import com.invitation.name.NameFormat;
+import com.validation.age.OlderThan;
 import com.validation.age.ValidateByAge;
+import com.validation.country.FromCountry;
 import com.validation.country.ValidateByCountry;
 import org.junit.Test;
 
@@ -30,14 +32,14 @@ public class GuestTest {
     @Test
     public void test_isAllowed_gives_result_based_on_the_country_validator_given_to_it() throws Exception {
         Guest john = Guest.createGuest("John", "Smith", "Male", "25", "Bangalore", "Karnataka", "India");
-        assertTrue(john.isAllowed(new ValidateByCountry("India")));
-        assertFalse(john.isAllowed(new ValidateByCountry("USA")));
+        assertTrue(john.isAllowed(new ValidateByCountry(new FromCountry("India"))));
+        assertFalse(john.isAllowed(new ValidateByCountry(new FromCountry("USA"))));
     }
 
     @Test
     public void test_isAllowed_gives_result_based_on_the_age_validator_given_to_it() throws Exception {
         Guest john = Guest.createGuest("John", "Smith", "Female", "25", "Bangalore", "Karnataka", "India");
-        assertTrue(john.isAllowed(new ValidateByAge(24)));
-        assertFalse(john.isAllowed(new ValidateByAge(60)));
+        assertTrue(john.isAllowed(new ValidateByAge(new OlderThan(24))));
+        assertFalse(john.isAllowed(new ValidateByAge(new OlderThan(60))));
     }
 }

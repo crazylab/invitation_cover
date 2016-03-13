@@ -4,10 +4,10 @@ public class FromCountry implements CountryPredicate{
     private String country;
 
     public FromCountry(String country) {
-        this.country = country.toUpperCase();
+        this.country = country;
     }
 
     public boolean checkValidity(String country){
-        return this.country.equals(country.toUpperCase());
-    };
+        return this.country.equalsIgnoreCase(country);
+    }
 }

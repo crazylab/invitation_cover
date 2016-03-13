@@ -4,7 +4,9 @@ import com.invitation.label.LabelGenerator;
 import com.invitation.label.WithFullAddress;
 import com.invitation.name.NameFormat;
 import com.validation.Validator;
+import com.validation.age.OlderThan;
 import com.validation.age.ValidateByAge;
+import com.validation.country.FromCountry;
 import com.validation.country.ValidateByCountry;
 import com.validation.Validations;
 
@@ -41,12 +43,11 @@ public class Command {
 
         ArrayList<Validator> validators = new ArrayList<>();
         if(countryIndex != 0)
-            validators.add(new ValidateByCountry(command[countryIndex]));
+            validators.add(new ValidateByCountry(new FromCountry(command[countryIndex])));
         if(ageLimitIndex != 0){
-            validators.add(new ValidateByAge(Integer.parseInt(command[ageLimitIndex])));
+            validators.add(new ValidateByAge(new OlderThan(Integer.parseInt(command[ageLimitIndex]))));
         }
         validations = new Validations(validators);
-
     }
 
     public Validations getValidator() {

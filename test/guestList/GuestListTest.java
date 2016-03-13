@@ -5,7 +5,9 @@ import com.invitation.label.LabelGenerator;
 import com.invitation.label.WithFullAddress;
 import com.invitation.name.NameFormat;
 import com.validation.Validator;
+import com.validation.age.OlderThan;
 import com.validation.age.ValidateByAge;
+import com.validation.country.FromCountry;
 import com.validation.country.ValidateByCountry;
 import com.validation.Validations;
 import org.junit.Before;
@@ -34,7 +36,7 @@ public class GuestListTest {
         LabelGenerator labelGenerator = new LabelGenerator(NameFormat.LASTNAMEFIRST, new WithFullAddress());
 
         ArrayList<Validator> validators = new ArrayList<>();
-        validators.add(new ValidateByCountry("India"));
+        validators.add(new ValidateByCountry(new FromCountry("India")));
         Validations validations = new Validations(validators);
 
         List<String> formalInvitation = guestList.invite(labelGenerator, validations);
@@ -58,7 +60,7 @@ public class GuestListTest {
         LabelGenerator labelGenerator = new LabelGenerator(NameFormat.FIRSTNAMEFIRST, new WithFullAddress());
 
         ArrayList<Validator> validators = new ArrayList<>();
-        validators.add(new ValidateByCountry("USA"));
+        validators.add(new ValidateByCountry(new FromCountry("USA")));
 
         Validations validations = new Validations(validators);
 
@@ -77,8 +79,8 @@ public class GuestListTest {
         LabelGenerator labelGenerator = new LabelGenerator(NameFormat.FIRSTNAMEFIRST, new WithFullAddress());
 
         ArrayList<Validator> validators = new ArrayList<>();
-        validators.add(new ValidateByCountry("India"));
-        validators.add(new ValidateByAge(40));
+        validators.add(new ValidateByCountry(new FromCountry("India")));
+        validators.add(new ValidateByAge(new OlderThan(40)));
 
         Validations validations = new Validations(validators);
 

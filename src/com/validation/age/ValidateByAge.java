@@ -5,14 +5,17 @@ import com.guest.Age;
 import com.validation.Validator;
 
 public class ValidateByAge implements Validator {
-    int age;
+//    int age;
 
-    public ValidateByAge(int age) {
-        this.age = age;
+    AgePredicate agePredicate;
+
+    public ValidateByAge(AgePredicate agePredicate) {
+//        this.age = age;
+        this.agePredicate = agePredicate;
     }
 
     @Override
     public boolean isAllowed(Age age, Address address) {
-        return age.isAllowed(new OlderThan(this.age));
+        return age.isAllowed(agePredicate);
     }
 }
