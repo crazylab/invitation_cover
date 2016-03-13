@@ -4,8 +4,9 @@ import com.guestList.GuestList;
 import com.invitation.label.LabelGenerator;
 import com.invitation.label.WithFullAddress;
 import com.invitation.name.NameFormat;
-import com.validation.ValidateByAge;
-import com.validation.ValidateByCountry;
+import com.validation.Validator;
+import com.validation.age.ValidateByAge;
+import com.validation.country.ValidateByCountry;
 import com.validation.Validations;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,8 +33,9 @@ public class GuestListTest {
     public void testInviteFrom_gives_the_formal_invitation_for_all_the_guests_from_a_specific_country() throws Exception {
         LabelGenerator labelGenerator = new LabelGenerator(NameFormat.LASTNAMEFIRST, new WithFullAddress());
 
-        Validations validations = new Validations();
-        validations.addValidation(new ValidateByCountry("India"));
+        ArrayList<Validator> validators = new ArrayList<>();
+        validators.add(new ValidateByCountry("India"));
+        Validations validations = new Validations(validators);
 
         List<String> formalInvitation = guestList.invite(labelGenerator, validations);
 
@@ -55,8 +57,10 @@ public class GuestListTest {
     public void testInviteFrom_gives_the_casual_invitation_for_all_the_guests_from_a_specific_country() throws Exception {
         LabelGenerator labelGenerator = new LabelGenerator(NameFormat.FIRSTNAMEFIRST, new WithFullAddress());
 
-        Validations validations = new Validations();
-        validations.addValidation(new ValidateByCountry("USA"));
+        ArrayList<Validator> validators = new ArrayList<>();
+        validators.add(new ValidateByCountry("USA"));
+
+        Validations validations = new Validations(validators);
 
         List<String> casualInvitation = guestList.invite(labelGenerator, validations);
 
@@ -72,9 +76,11 @@ public class GuestListTest {
     public void testInviteFrom_gives_the_casual_invitation_for_all_the_guests_from_a_specific_country_and_having_age_greater_than_the_given() throws Exception {
         LabelGenerator labelGenerator = new LabelGenerator(NameFormat.FIRSTNAMEFIRST, new WithFullAddress());
 
-        Validations validations = new Validations();
-        validations.addValidation(new ValidateByCountry("India"));
-        validations.addValidation(new ValidateByAge(40));
+        ArrayList<Validator> validators = new ArrayList<>();
+        validators.add(new ValidateByCountry("India"));
+        validators.add(new ValidateByAge(40));
+
+        Validations validations = new Validations(validators);
 
         List<String> casualInvitation = guestList.invite(labelGenerator, validations);
 

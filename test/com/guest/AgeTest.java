@@ -1,14 +1,17 @@
 package com.guest;
 
+import com.validation.age.OlderThan;
 import org.junit.Test;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class AgeTest {
 
     @Test
-    public void testIsEquals_gives_true_when_the_given_age_is_greater_than_the_given_age() throws Exception {
+    public void tes_isAllowed_gives_result_based_on_the_given_predicate() throws Exception {
         Age age = new Age(18);
-        assertTrue(age.isOlderThan(17));
+        assertTrue(age.isAllowed(new OlderThan(17)));
+        assertFalse(age.isAllowed(new OlderThan(18)));
     }
 }

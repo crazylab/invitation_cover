@@ -8,13 +8,13 @@ import java.util.List;
 public class Validations {
     private List<Validator> validators = new ArrayList<>();
 
-    public void addValidation(Validator validator){
-        validators.add(validator);
+    public Validations(List<Validator> validators) {
+        this.validators = validators;
     }
 
     public boolean isValid(Guest guest){
         for (Validator validator : validators)
-            if(!validator.isAllowed(guest))
+            if(!guest.isAllowed(validator))
                 return false;
         return true;
     }

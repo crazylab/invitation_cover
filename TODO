@@ -1,7 +1,7 @@
 Write Library to print(represent) label from record:
 
 List of records provided
-    Format: firstName,lastName,gender,age,city,state,country
+    Format: firstName,lastName,gender,thresholdAge,city,state,country
 
 Furnish label options for specific country
 
@@ -15,5 +15,5 @@ Output:
 
 ------------------------------------------------------------------
 read command line input as followes:
-    InvitationGenerator --firstNameFirst --country country_name --ageabove age file_path
-    InvitationGenerator --lastNameFirst --country country_name --ageabove age file_path
+    InvitationGenerator --firstNameFirst --country country_name --ageabove thresholdAge file_path
+    InvitationGenerator --lastNameFirst --country country_name --ageabove thresholdAge file_path

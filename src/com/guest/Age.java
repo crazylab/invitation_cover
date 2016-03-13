@@ -1,5 +1,7 @@
 package com.guest;
 
+import com.validation.age.AgePredicate;
+
 public class Age{
     private int age;
 
@@ -7,7 +9,7 @@ public class Age{
         this.age = age;
     }
 
-    public boolean isOlderThan(int age) {
-        return this.age > age;
+    public boolean isAllowed(AgePredicate agePredicate) {
+        return agePredicate.checkValidity(age);
     }
 }

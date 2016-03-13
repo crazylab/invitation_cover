@@ -3,15 +3,17 @@ package com.command;
 import com.invitation.label.LabelGenerator;
 import com.invitation.label.WithFullAddress;
 import com.invitation.name.NameFormat;
-import com.validation.ValidateByAge;
-import com.validation.ValidateByCountry;
+import com.validation.Validator;
+import com.validation.age.ValidateByAge;
+import com.validation.country.ValidateByCountry;
 import com.validation.Validations;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Command {
     private String[] command;
-    private Validations validations = new Validations();
+    private Validations validations;
     private LabelGenerator labelGenerator;
 
     public Command(String[] command) {
@@ -37,11 +39,14 @@ public class Command {
         int ageLimitIndex = Arrays.asList(command).indexOf("--ageabove")+ 1;
         int countryIndex = Arrays.asList(command).indexOf("--country") + 1;
 
+        ArrayList<Validator> validators = new ArrayList<>();
         if(countryIndex != 0)
-            validations.addValidation(new ValidateByCountry(command[countryIndex]));
+            validators.add(new ValidateByCountry(command[countryIndex]));
         if(ageLimitIndex != 0){
-            validations.addValidation(new ValidateByAge(Integer.parseInt(command[ageLimitIndex])));
+            validators.add(new ValidateByAge(Integer.parseInt(command[ageLimitIndex])));
         }
+        validations = new Validations(validators);
+
     }
 
     public Validations getValidator() {

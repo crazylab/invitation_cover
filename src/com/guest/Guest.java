@@ -2,6 +2,7 @@ package com.guest;
 
 import com.invitation.label.Formatter;
 import com.invitation.name.NameFormat;
+import com.validation.Validator;
 
 public class Guest {
     private Name name;
@@ -34,11 +35,7 @@ public class Guest {
         return name.callWithTitle(gender.getHonorific(), nameFormat);
     }
 
-    public boolean isFromCountry(String country) {
-        return address.isFromCountry(country);
-    }
-
-    public boolean isOlderThan(int age) {
-        return this.age.isOlderThan(age);
+    public boolean isAllowed(Validator validator) {
+        return validator.isAllowed(age, address);
     }
 }

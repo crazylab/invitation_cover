@@ -1,7 +1,8 @@
 package com.validation;
 
-import com.guest.Guest;
+import com.guest.Address;
+import com.guest.Age;
 
 public interface Validator {
-    boolean isAllowed(Guest guest);
+    boolean isAllowed(Age age, Address address);
 }
