@@ -163,4 +163,95 @@ public class CLITest {
         for (int i = 0; i < results.size(); i++)
             assertEquals(expected.get(i), results.get(i));
     }
+
+    @Test
+    public void test_runCommand_gives_label_for_all_when_asked_for_last_name_first_with_no_condition() throws Exception {
+        cli.runCommand("--lastNameFirst file_path".split(" "));
+        List<String> expected = new ArrayList<>();
+
+        expected.add(
+            "+---------------------+\n" +
+            "| Ms Barrows, Julius  |\n" +
+            "|---------------------|\n" +
+            "| Veda haven, Vermont |\n" +
+            "| Macedonia           |\n" +
+            "+---------------------+"
+        );
+
+        expected.add(
+            "+-----------------------------+\n" +
+            "| Mr Hills, Catharine         |\n" +
+            "|-----------------------------|\n" +
+            "| West Shanna, South Carolina |\n" +
+            "| Macedonia                   |\n" +
+            "+-----------------------------+"
+        );
+
+        expected.add(
+            "+------------------------------+\n" +
+            "| Mr Denesik, Ashly            |\n" +
+            "|------------------------------|\n" +
+            "| Katlynn view, South Carolina |\n" +
+            "| Bangladesh                   |\n" +
+            "+------------------------------+"
+        );
+
+        expected.add(
+            "+---------------------+\n" +
+            "| Mr Runte, Jovanny   |\n" +
+            "|---------------------|\n" +
+            "| Crooks ton, Georgia |\n" +
+            "| Qatar               |\n" +
+            "+---------------------+"
+        );
+
+        expected.add(
+            "+----------------------------+\n" +
+            "| Ms Howe, Kaela             |\n" +
+            "|----------------------------|\n" +
+            "| New Alanna, Vermont        |\n" +
+            "| Slovakia (Slovak Republic) |\n" +
+            "+----------------------------+"
+        );
+        expected.add(
+            "+-----------------------+\n" +
+            "| Ms Ruecker, Alice     |\n" +
+            "|-----------------------|\n" +
+            "| West Shanna, Illinois |\n" +
+            "| Romania               |\n" +
+            "+-----------------------+"
+        );
+
+
+        expected.add(
+            "+---------------------+\n" +
+            "| Ms Walter, Gerry    |\n" +
+            "|---------------------|\n" +
+            "| New Alanna, Vermont |\n" +
+            "| Bangladesh          |\n" +
+            "+---------------------+"
+        );
+
+        expected.add(
+            "+---------------------+\n" +
+            "| Mr Durgan, Major    |\n" +
+            "|---------------------|\n" +
+            "| Veda haven, Georgia |\n" +
+            "| Bangladesh          |\n" +
+            "+---------------------+"
+        );
+
+        expected.add(
+            "+------------------------------+\n" +
+            "| Mr Denesik, Ashly            |\n" +
+            "|------------------------------|\n" +
+            "| Katlynn view, South Carolina |\n" +
+            "| Bangladesh                   |\n" +
+            "+------------------------------+"
+        );
+
+
+        for (int i = 0; i < results.size(); i++)
+            assertEquals(expected.get(i), results.get(i));
+    }
 }

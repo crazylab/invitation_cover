@@ -17,7 +17,6 @@ public class CLI {
 
     public void runCommand(String[] commandArgs) throws IOException {
         Command command = new Command(commandArgs);
-//        command.parseCommand();
         List<String[]> guestListAsArray = io.readCSV(command.getFileName());
         GuestList guestList = GuestList.createGuestList(guestListAsArray);
         LabelGenerator labelGenerator = command.getLabelGenerator();
