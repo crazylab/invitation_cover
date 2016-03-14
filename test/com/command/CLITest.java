@@ -1,6 +1,6 @@
 package com.command;
 
-import com.util.IO;
+import util.IO;
 import org.junit.Before;
 import org.junit.Test;
 

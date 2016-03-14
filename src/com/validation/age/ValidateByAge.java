@@ -1,6 +1,6 @@
 package com.validation.age;
 
-import com.guest.Address;
+import com.guest.address.Address;
 import com.guest.Age;
 import com.validation.Validator;
 

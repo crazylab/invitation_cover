@@ -1,7 +1,7 @@
 package app;
 
 import com.command.CLI;
-import com.util.IO;
+import util.IO;
 
 import java.io.IOException;
 

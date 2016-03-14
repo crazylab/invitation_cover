@@ -41,18 +41,20 @@ public class GuestListTest {
 
         List<String> formalInvitation = guestList.invite(labelGenerator, validations);
 
-        assertEquals("+------------------+\n" +
-                     "| Ms Being, Human  |\n" +
-                     "|------------------|\n" +
-                     "| New Delhi, Delhi |\n" +
-                     "| India            |\n" +
-                     "+------------------+", formalInvitation.get(0));
-        assertEquals("+--------------------+\n" +
-                     "| Mr Guy, Poor       |\n" +
-                     "|--------------------|\n" +
-                     "| Mumbai, Maharastra |\n" +
-                     "| India              |\n" +
-                     "+--------------------+", formalInvitation.get(1));
+        assertEquals(
+            "+------------------+\n" +
+             "| Ms Being, Human  |\n" +
+             "|------------------|\n" +
+             "| New Delhi, Delhi |\n" +
+             "| India            |\n" +
+             "+------------------+", formalInvitation.get(0));
+        assertEquals(
+            "+--------------------+\n" +
+             "| Mr Guy, Poor       |\n" +
+             "|--------------------|\n" +
+             "| Mumbai, Maharastra |\n" +
+             "| India              |\n" +
+             "+--------------------+", formalInvitation.get(1));
     }
 
     @Test
@@ -86,11 +88,12 @@ public class GuestListTest {
 
         List<String> casualInvitation = guestList.invite(labelGenerator, validations);
 
-        assertEquals("+------------------+\n" +
-                     "| Ms Human Being   |\n" +
-                     "|------------------|\n" +
-                     "| New Delhi, Delhi |\n" +
-                     "| India            |\n" +
-                     "+------------------+", casualInvitation.get(0));
+        assertEquals(
+            "+------------------+\n" +
+             "| Ms Human Being   |\n" +
+             "|------------------|\n" +
+             "| New Delhi, Delhi |\n" +
+             "| India            |\n" +
+             "+------------------+", casualInvitation.get(0));
     }
 }

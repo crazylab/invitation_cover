@@ -1,6 +1,6 @@
 package com.validation;
 
-import com.guest.Address;
+import com.guest.address.Address;
 import com.guest.Age;
 
 public interface Validator {

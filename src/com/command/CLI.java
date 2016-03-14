@@ -2,7 +2,7 @@ package com.command;
 
 import com.guestList.GuestList;
 import com.invitation.label.LabelGenerator;
-import com.util.IO;
+import util.IO;
 import com.validation.Validations;
 
 import java.io.IOException;
