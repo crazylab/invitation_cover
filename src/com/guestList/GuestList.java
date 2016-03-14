@@ -25,7 +25,7 @@ public class GuestList {
         List<String> invitationLabels = new ArrayList<>();
         for (Guest guest : guestList)
             if(filter.isValid(guest))
-                invitationLabels.add(labelGenerator.genetateLabel(guest));
+                invitationLabels.add(labelGenerator.generateLabel(guest));
         return invitationLabels;
     }
 }

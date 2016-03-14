@@ -25,6 +25,6 @@ public class LabelGeneratorTest {
                      "|--------------|\n" +
                      "| Bhalghar, UP |\n" +
                      "| India        |\n" +
-                     "+--------------+", labelGenerator.genetateLabel(guest));
+                     "+--------------+", labelGenerator.generateLabel(guest));
     }
 }

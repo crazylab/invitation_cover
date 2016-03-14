@@ -5,6 +5,7 @@ import com.invitation.name.NameFormat;
 
 public class LabelGenerator {
     private Formatter addressFormat;
+
     private NameFormat nameFormat;
 
     public LabelGenerator(NameFormat nameFormat, Formatter addressFormat) {
@@ -12,7 +13,7 @@ public class LabelGenerator {
         this.addressFormat = addressFormat;
     }
 
-    public String genetateLabel(Guest guest) {
+    public String generateLabel(Guest guest) {
         String name = guest.generateName(nameFormat);
         String address = guest.generateAddress(addressFormat);
         return genetateFinalLabel(name, address);
