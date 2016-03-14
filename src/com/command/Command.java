@@ -5,20 +5,15 @@ import com.invitation.label.WithFullAddress;
 import com.invitation.name.NameFormat;
 import com.validation.Validations;
 import com.validation.Validator;
+import org.hamcrest.internal.ArrayIterator;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Command {
     private String[] command;
 
-    private Validations validations;
-
-    private LabelGenerator labelGenerator;
-
     public Command(String[] command) {
         this.command = command;
-        parseCommand();
     }
 
     public String getFileName() {
@@ -31,23 +26,27 @@ public class Command {
     }
 
     public LabelGenerator getLabelGenerator() {
-        return labelGenerator;
+        return new LabelGenerator(getNameFormat(), new WithFullAddress());
     }
 
-    private void parseCommand() {
-        labelGenerator = new LabelGenerator(getNameFormat(), new WithFullAddress());
-        int ageLimitIndex = Arrays.asList(command).indexOf("--ageabove") + 1;
-        int countryIndex = Arrays.asList(command).indexOf("--country") + 1;
-
-        ArrayList<Validator> validators = new ArrayList<>();
-        if (countryIndex != 0)
-            validators.add(Options.COUNTRY.getValidator(command[countryIndex]));
-        if (ageLimitIndex != 0)
-            validators.add(Options.AGEABOVE.getValidator(command[ageLimitIndex]));
-        validations = new Validations(validators);
+    private boolean isOption(String arg) {
+        return arg.startsWith("--");
     }
 
     public Validations getValidator() {
-        return validations;
+        ArrayIterator iterator = new ArrayIterator(command);
+        iterator.next();    //Skipping name format
+
+        ArrayList<Validator> validators = new ArrayList<>();
+        while (iterator.hasNext()) {
+            String arguement = (String) iterator.next();
+            if (isOption(arguement)) {
+                arguement = arguement.replace("--", "").toUpperCase();
+                String parameter = (String) iterator.next();
+                Validator predicate = Options.valueOf(arguement).getValidator(parameter);
+                validators.add(predicate);
+            }
+        }
+        return new Validations(validators);
     }
 }

@@ -18,5 +18,6 @@ public enum Options {
             return new ValidateByCountry(new FromCountry(country));
         }
     };
+
     public abstract Validator getValidator(String validationData);
 }
