@@ -43,7 +43,7 @@ public class Command {
         if (countryIndex != 0)
             validators.add(Options.COUNTRY.getValidator(command[countryIndex]));
         if (ageLimitIndex != 0)
-            validators.add(Options.COUNTRY.getValidator(command[ageLimitIndex]));
+            validators.add(Options.AGEABOVE.getValidator(command[ageLimitIndex]));
         validations = new Validations(validators);
     }
 
