@@ -3,7 +3,7 @@ package com.command;
 import com.guestList.GuestList;
 import com.invitation.label.LabelGenerator;
 import util.IO;
-import com.validation.Validations;
+import com.validation.ListOfValidations;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,7 +20,7 @@ public class CLI {
         List<String[]> guestListAsArray = io.readCSV(command.getFileName());
         GuestList guestList = GuestList.createGuestList(guestListAsArray);
         LabelGenerator labelGenerator = command.getLabelGenerator();
-        Validations validator = command.getValidator();
+        ListOfValidations validator = command.getValidator();
         List<String> labels = guestList.invite(labelGenerator, validator);
         io.print(labels);
     }

@@ -2,7 +2,7 @@ package com.guestList;
 
 import com.guest.Guest;
 import com.invitation.label.LabelGenerator;
-import com.validation.Validations;
+import com.validation.ListOfValidations;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class GuestList {
         this.guestList = guestList;
     }
 
-    public List<String> invite(LabelGenerator labelGenerator, Validations filter){
+    public List<String> invite(LabelGenerator labelGenerator, ListOfValidations filter){
         List<String> invitationLabels = new ArrayList<>();
         for (Guest guest : guestList)
             if(filter.isValid(guest))

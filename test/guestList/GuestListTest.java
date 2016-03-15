@@ -9,7 +9,7 @@ import com.validation.age.OlderThan;
 import com.validation.age.ValidateByAge;
 import com.validation.country.FromCountry;
 import com.validation.country.ValidateByCountry;
-import com.validation.Validations;
+import com.validation.ListOfValidations;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -37,7 +37,7 @@ public class GuestListTest {
 
         ArrayList<Validator> validators = new ArrayList<>();
         validators.add(new ValidateByCountry(new FromCountry("India")));
-        Validations validations = new Validations(validators);
+        ListOfValidations validations = new ListOfValidations(validators);
 
         List<String> formalInvitation = guestList.invite(labelGenerator, validations);
 
@@ -64,7 +64,7 @@ public class GuestListTest {
         ArrayList<Validator> validators = new ArrayList<>();
         validators.add(new ValidateByCountry(new FromCountry("USA")));
 
-        Validations validations = new Validations(validators);
+        ListOfValidations validations = new ListOfValidations(validators);
 
         List<String> casualInvitation = guestList.invite(labelGenerator, validations);
 
@@ -84,7 +84,7 @@ public class GuestListTest {
         validators.add(new ValidateByCountry(new FromCountry("India")));
         validators.add(new ValidateByAge(new OlderThan(40)));
 
-        Validations validations = new Validations(validators);
+        ListOfValidations validations = new ListOfValidations(validators);
 
         List<String> casualInvitation = guestList.invite(labelGenerator, validations);
 

@@ -10,7 +10,7 @@ public class City {
         this.city = city;
     }
 
-    public String getName() {
+    public String name() {
         return city;
     }
 }

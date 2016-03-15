@@ -5,10 +5,10 @@ import com.guest.Guest;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Validations {
+public class ListOfValidations {
     private List<Validator> validators = new ArrayList<>();
 
-    public Validations(List<Validator> validators) {
+    public ListOfValidations(List<Validator> validators) {
         this.validators = validators;
     }
 

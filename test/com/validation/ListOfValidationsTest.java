@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-public class ValidationsTest {
+public class ListOfValidationsTest {
 
     private Guest guest;
 
@@ -27,7 +27,7 @@ public class ValidationsTest {
         ArrayList<Validator> validators = new ArrayList<>();
         validators.add(new ValidateByCountry(new FromCountry("India")));
 
-        Validations validations = new Validations(validators);
+        ListOfValidations validations = new ListOfValidations(validators);
         assertTrue(validations.isValid(guest));
     }
 
@@ -36,7 +36,7 @@ public class ValidationsTest {
         ArrayList<Validator> validators = new ArrayList<>();
         validators.add(new ValidateByCountry(new FromCountry("Qatar")));
 
-        Validations validations = new Validations(validators);
+        ListOfValidations validations = new ListOfValidations(validators);
         assertFalse(validations.isValid(guest));
     }
 
@@ -45,7 +45,7 @@ public class ValidationsTest {
         ArrayList<Validator> validators = new ArrayList<>();
         validators.add(new ValidateByAge(new OlderThan(59)));
 
-        Validations validations = new Validations(validators);
+        ListOfValidations validations = new ListOfValidations(validators);
         assertTrue(validations.isValid(guest));
     }
 
@@ -54,7 +54,7 @@ public class ValidationsTest {
         ArrayList<Validator> validators = new ArrayList<>();
         validators.add(new ValidateByAge(new OlderThan(60)));
 
-        Validations validations = new Validations(validators);
+        ListOfValidations validations = new ListOfValidations(validators);
         assertFalse(validations.isValid(guest));
     }
 
@@ -64,7 +64,7 @@ public class ValidationsTest {
         validators.add(new ValidateByAge(new OlderThan(59)));
         validators.add(new ValidateByCountry(new FromCountry("India")));
 
-        Validations validations = new Validations(validators);
+        ListOfValidations validations = new ListOfValidations(validators);
         assertTrue(validations.isValid(guest));
     }
 
@@ -74,7 +74,7 @@ public class ValidationsTest {
         validators.add(new ValidateByAge(new OlderThan(61)));
         validators.add(new ValidateByCountry(new FromCountry("India")));
 
-        Validations validations = new Validations(validators);
+        ListOfValidations validations = new ListOfValidations(validators);
         assertFalse(validations.isValid(guest));
     }
 }

@@ -7,7 +7,7 @@ public class State {
         this.state = state;
     }
 
-    public String getName() {
+    public String name() {
         return state;
     }
 }

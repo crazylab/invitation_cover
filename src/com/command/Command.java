@@ -3,7 +3,7 @@ package com.command;
 import com.invitation.label.LabelGenerator;
 import com.invitation.label.WithFullAddress;
 import com.invitation.name.NameFormat;
-import com.validation.Validations;
+import com.validation.ListOfValidations;
 import com.validation.Validator;
 import org.hamcrest.internal.ArrayIterator;
 
@@ -33,7 +33,7 @@ public class Command {
         return arg.startsWith("--");
     }
 
-    public Validations getValidator() {
+    public ListOfValidations getValidator() {
         ArrayIterator iterator = new ArrayIterator(command);
         iterator.next();    //Skipping name format
 
@@ -47,6 +47,6 @@ public class Command {
                 validators.add(predicate);
             }
         }
-        return new Validations(validators);
+        return new ListOfValidations(validators);
     }
 }
