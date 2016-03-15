@@ -1,32 +1,35 @@
 package com.command;
 
-import com.invitation.label.LabelGenerator;
-import com.invitation.label.WithFullAddress;
-import com.invitation.name.NameFormat;
+import com.guest.address.represent.WithFullAddress;
+import com.guest.name.represent.FirstNameFirst;
+import com.guest.name.represent.LastNameFirst;
+import com.guest.name.represent.NameFormatter;
+import com.invitation.label.LabelFormatter;
+import com.invitation.label.LabelWithNameAddress;
 import com.validation.ListOfValidations;
 import com.validation.Validator;
-import org.hamcrest.internal.ArrayIterator;
 
 import java.util.ArrayList;
 
 public class Command {
-    private String[] command;
+    private String[] commandArgs;
 
-    public Command(String[] command) {
-        this.command = command;
+    public Command(String[] commandArgs) {
+        this.commandArgs = commandArgs;
     }
 
-    public String getFileName() {
-        return command[command.length - 1];
+    public String fileName() {
+        return commandArgs[commandArgs.length - 1];
     }
 
-    private NameFormat getNameFormat() {
-        String nameFormat = command[0].replace("--", "").toUpperCase();
-        return NameFormat.valueOf(nameFormat);
+    private NameFormatter getNameFormat() {
+        if("--LastNameFirst".equalsIgnoreCase(commandArgs[0]))
+            return new LastNameFirst();
+        return new FirstNameFirst();
     }
 
-    public LabelGenerator getLabelGenerator() {
-        return new LabelGenerator(getNameFormat(), new WithFullAddress());
+    public LabelFormatter getLabelFormatter() {
+        return new LabelWithNameAddress(getNameFormat(), new WithFullAddress());
     }
 
     private boolean isOption(String arg) {
@@ -34,19 +37,18 @@ public class Command {
     }
 
     public ListOfValidations getValidator() {
-        ArrayIterator iterator = new ArrayIterator(command);
-        iterator.next();    //Skipping name format
-
         ArrayList<Validator> validators = new ArrayList<>();
-        while (iterator.hasNext()) {
-            String arguement = (String) iterator.next();
+
+        for(int index = 1; index < commandArgs.length - 1; index++) {
+            String arguement = commandArgs[index];
             if (isOption(arguement)) {
                 arguement = arguement.replace("--", "").toUpperCase();
-                String parameter = (String) iterator.next();
+                String parameter = commandArgs[++index];
                 Validator predicate = Options.valueOf(arguement).getValidator(parameter);
                 validators.add(predicate);
             }
         }
+
         return new ListOfValidations(validators);
     }
 }

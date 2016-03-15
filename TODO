@@ -14,6 +14,6 @@ Output:
         Female -> Ms
 
 ------------------------------------------------------------------
-read command line input as followes:
+read commandArgs line input as followes:
     InvitationGenerator --firstNameFirst --givenCountry country_name --ageabove thresholdAge file_path
     InvitationGenerator --lastNameFirst --givenCountry country_name --ageabove thresholdAge file_path

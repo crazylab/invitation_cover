@@ -1,15 +1,16 @@
-package guestList;
+package com.guestList;
 
-import com.guestList.GuestList;
-import com.invitation.label.LabelGenerator;
-import com.invitation.label.WithFullAddress;
-import com.invitation.name.NameFormat;
+import com.guest.address.represent.WithFullAddress;
+import com.guest.name.represent.FirstNameFirst;
+import com.guest.name.represent.LastNameFirst;
+import com.invitation.label.LabelFormatter;
+import com.invitation.label.LabelWithNameAddress;
+import com.validation.ListOfValidations;
 import com.validation.Validator;
 import com.validation.age.OlderThan;
 import com.validation.age.ValidateByAge;
 import com.validation.country.FromCountry;
 import com.validation.country.ValidateByCountry;
-import com.validation.ListOfValidations;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -33,13 +34,13 @@ public class GuestListTest {
 
     @Test
     public void testInviteFrom_gives_the_formal_invitation_for_all_the_guests_from_a_specific_country() throws Exception {
-        LabelGenerator labelGenerator = new LabelGenerator(NameFormat.LASTNAMEFIRST, new WithFullAddress());
+        LabelFormatter labelFormatter = new LabelWithNameAddress(new LastNameFirst(), new WithFullAddress());
 
         ArrayList<Validator> validators = new ArrayList<>();
         validators.add(new ValidateByCountry(new FromCountry("India")));
         ListOfValidations validations = new ListOfValidations(validators);
 
-        List<String> formalInvitation = guestList.invite(labelGenerator, validations);
+        List<String> formalInvitation = guestList.generateLabel(labelFormatter, validations);
 
         assertEquals(
             "+------------------+\n" +
@@ -59,14 +60,14 @@ public class GuestListTest {
 
     @Test
     public void testInviteFrom_gives_the_casual_invitation_for_all_the_guests_from_a_specific_country() throws Exception {
-        LabelGenerator labelGenerator = new LabelGenerator(NameFormat.FIRSTNAMEFIRST, new WithFullAddress());
+        LabelFormatter labelFormatter = new LabelWithNameAddress(new FirstNameFirst(), new WithFullAddress());
 
         ArrayList<Validator> validators = new ArrayList<>();
         validators.add(new ValidateByCountry(new FromCountry("USA")));
 
         ListOfValidations validations = new ListOfValidations(validators);
 
-        List<String> casualInvitation = guestList.invite(labelGenerator, validations);
+        List<String> casualInvitation = guestList.generateLabel(labelFormatter, validations);
 
         assertEquals("+------------------+\n" +
                      "| Mr US Guest      |\n" +
@@ -78,7 +79,7 @@ public class GuestListTest {
 
     @Test
     public void testInviteFrom_gives_the_casual_invitation_for_all_the_guests_from_a_specific_country_and_having_age_greater_than_the_given() throws Exception {
-        LabelGenerator labelGenerator = new LabelGenerator(NameFormat.FIRSTNAMEFIRST, new WithFullAddress());
+        LabelFormatter labelFormatter = new LabelWithNameAddress(new FirstNameFirst(), new WithFullAddress());
 
         ArrayList<Validator> validators = new ArrayList<>();
         validators.add(new ValidateByCountry(new FromCountry("India")));
@@ -86,7 +87,7 @@ public class GuestListTest {
 
         ListOfValidations validations = new ListOfValidations(validators);
 
-        List<String> casualInvitation = guestList.invite(labelGenerator, validations);
+        List<String> casualInvitation = guestList.generateLabel(labelFormatter, validations);
 
         assertEquals(
             "+------------------+\n" +

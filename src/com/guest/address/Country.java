@@ -9,14 +9,11 @@ public class Country {
         this.country = country;
     }
 
-//    public boolean equals(String country) {
-//        return this.country.equalsIgnoreCase(country);
-//    }
     public String name() {
         return country;
     }
 
-    public boolean isValid(CountryPredicate countryPredicate){
+    public boolean isValid(CountryPredicate countryPredicate) {
         return countryPredicate.checkValidity(country);
     }
 }

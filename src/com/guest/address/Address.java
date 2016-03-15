@@ -1,6 +1,6 @@
 package com.guest.address;
 
-import com.invitation.label.Formatter;
+import com.guest.address.represent.AddressFormatter;
 import com.validation.country.CountryPredicate;
 
 public class Address {
@@ -20,8 +20,8 @@ public class Address {
         this.country = country;
     }
 
-    public String represent(Formatter format) {
-        return format.generate(city.name(), state.name(), country.name());
+    public String representAddress(AddressFormatter format) {
+        return format.representAddress(city, state, country);
     }
 
     public boolean isAllowed(CountryPredicate countryPredicate) {

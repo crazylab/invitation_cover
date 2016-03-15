@@ -1,13 +1,11 @@
 package com.guest;
 
 import com.guest.address.Address;
-import com.invitation.label.WithFullAddress;
+import com.guest.address.represent.WithFullAddress;
 import com.validation.country.FromCountry;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class AddressTest {
 
@@ -15,7 +13,7 @@ public class AddressTest {
     public void test_represent_represents_address_with_city_state_and_country() throws Exception {
         Address kolkata = Address.createAddress("Kolkata", "WB", "India");
 
-        assertEquals("Kolkata, WB\nIndia", kolkata.represent(new WithFullAddress()));
+        assertEquals("Kolkata, WB\nIndia", kolkata.representAddress(new WithFullAddress()));
     }
 
     @Test

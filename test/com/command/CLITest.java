@@ -23,7 +23,7 @@ public class CLITest {
         }
 
         @Override
-        public List<String[]> readCSV(String path) throws IOException {
+        public List<String[]> readCSVFile(String path) throws IOException {
             ArrayList<String[]> guestListAsArray = new ArrayList<>();
             guestListAsArray.add("Julius,Barrows,Female,18,Veda haven,Vermont,Macedonia".split(","));
             guestListAsArray.add("Catharine,Hills,Male,20,West Shanna,South Carolina,Macedonia".split(","));
@@ -46,6 +46,31 @@ public class CLITest {
     @Test
     public void test_runCommand_runs_the_given_command_when_asked_for_first_name_first_with_age_and_country_condition() throws Exception {
         cli.runCommand("--firstNameFirst --country Bangladesh --ageabove 28 file_path".split(" "));
+        List<String> expected = new ArrayList<>();
+
+        expected.add(
+            "+---------------------+\n" +
+            "| Ms Gerry Walter     |\n" +
+            "|---------------------|\n" +
+            "| New Alanna, Vermont |\n" +
+            "| Bangladesh          |\n" +
+            "+---------------------+"
+        );
+        expected.add(
+            "+---------------------+\n" +
+            "| Mr Major Durgan     |\n" +
+            "|---------------------|\n" +
+            "| Veda haven, Georgia |\n" +
+            "| Bangladesh          |\n" +
+            "+---------------------+");
+
+        for (int i = 0; i < results.size(); i++)
+            assertEquals(expected.get(i), results.get(i));
+    }
+
+    @Test
+    public void test_runCommand_runs_the_given_command_when_asked_for_first_name_first_with_age_and_country_condition_irespective_of_the_font_casing_in_command() throws Exception {
+        cli.runCommand("--firstNameFirst --couNtry bangladesh --ageAbove 28 file_path".split(" "));
         List<String> expected = new ArrayList<>();
 
         expected.add(

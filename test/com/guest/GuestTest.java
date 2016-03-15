@@ -1,7 +1,12 @@
 package com.guest;
 
-import com.invitation.label.WithFullAddress;
-import com.invitation.name.NameFormat;
+import com.guest.address.represent.AddressFormatter;
+import com.guest.address.represent.WithFullAddress;
+import com.guest.name.represent.FirstNameFirst;
+import com.guest.name.represent.LastNameFirst;
+import com.guest.name.represent.NameFormatter;
+import com.invitation.label.LabelFormatter;
+import com.invitation.label.LabelWithNameAddress;
 import com.validation.age.OlderThan;
 import com.validation.age.ValidateByAge;
 import com.validation.country.FromCountry;
@@ -11,22 +16,41 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class GuestTest {
+
     @Test
-    public void test_generateName_generates_the_name_with_the_FirstNameFirst_format() throws Exception {
-        Guest john = Guest.createGuest("John", "Smith", "Male", "25", "Bangalore", "Karnataka", "India");
-        assertEquals("Mr John Smith", john.generateName(NameFormat.FIRSTNAMEFIRST));
+    public void test_generateLabel_generates_the_required_label_by_using_the_given_formatter_consisting_first_name_first_and_full_address() throws Exception {
+        Guest john = Guest.createGuest("John", "Smith", "Male", "25", "Kolkata", "West Bengal", "India");
+        String expected =
+            "+----------------------+\n" +
+            "| Mr John Smith        |\n" +
+            "|----------------------|\n" +
+            "| Kolkata, West Bengal |\n" +
+            "| India                |\n" +
+            "+----------------------+";
+
+        NameFormatter nameFormatter = new FirstNameFirst();
+        AddressFormatter addressFormatter = new WithFullAddress();
+        LabelFormatter labelFormatter = new LabelWithNameAddress(nameFormatter, addressFormatter);
+
+        assertEquals(expected, john.generateLabel(labelFormatter));
     }
 
     @Test
-    public void test_generateName_generates_the_name_with_the_LastNameFirst_format() throws Exception {
-        Guest john = Guest.createGuest("John", "Smith", "Female", "25", "Bangalore", "Karnataka", "India");
-        assertEquals("Ms Smith, John", john.generateName(NameFormat.LASTNAMEFIRST));
-    }
+    public void test_generateLabel_generates_the_required_label_by_using_the_given_formatter_consisting_last_name_first_and_full_address_for_male() throws Exception {
+        Guest john = Guest.createGuest("John", "Smith", "Male", "25", "Kolkata", "West Bengal", "India");
+        String expected =
+            "+----------------------+\n" +
+            "| Mr Smith, John       |\n" +
+            "|----------------------|\n" +
+            "| Kolkata, West Bengal |\n" +
+            "| India                |\n" +
+            "+----------------------+";
 
-    @Test
-    public void test_generateAddress_generates_the_address_with_city_state_and_country() throws Exception {
-        Guest john = Guest.createGuest("John", "Smith", "Female", "25", "Bangalore", "Karnataka", "India");
-        assertEquals("Bangalore, Karnataka\nIndia", john.generateAddress(new WithFullAddress()));
+        NameFormatter nameFormatter = new LastNameFirst();
+        AddressFormatter addressFormatter = new WithFullAddress();
+        LabelFormatter labelFormatter = new LabelWithNameAddress(nameFormatter, addressFormatter);
+
+        assertEquals(expected, john.generateLabel(labelFormatter));
     }
 
     @Test

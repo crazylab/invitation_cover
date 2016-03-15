@@ -1,8 +1,8 @@
 package com.guest;
 
 import com.guest.address.Address;
-import com.invitation.label.Formatter;
-import com.invitation.name.NameFormat;
+import com.guest.name.Name;
+import com.invitation.label.LabelFormatter;
 import com.validation.Validator;
 
 public class Guest {
@@ -29,12 +29,8 @@ public class Guest {
         this.address = address;
     }
 
-    public String generateAddress(Formatter formatter) {
-        return address.represent(formatter);
-    }
-
-    public String generateName(NameFormat nameFormat) {
-        return name.callWithTitle(gender.getHonorific(), nameFormat);
+    public String generateLabel(LabelFormatter formatter) {
+        return formatter.generateLabel(name, gender, address);
     }
 
     public boolean isAllowed(Validator validator) {

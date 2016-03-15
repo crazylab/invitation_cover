@@ -12,11 +12,12 @@ public class IO {
             System.out.println(label);
     }
 
-    public List<String[]> readCSV(String path) throws IOException {
+    public List<String[]> readCSVFile(String path) throws IOException {
         ArrayList<String[]> guestListAsArray = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(path));
-        while (reader.readLine() != null)
-            guestListAsArray.add(reader.readLine().split(","));
+        String line;
+        while ((line = reader.readLine()) != null)
+            guestListAsArray.add(line.split(","));
         return guestListAsArray;
     }
 }

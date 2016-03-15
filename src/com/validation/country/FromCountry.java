@@ -9,6 +9,6 @@ public class FromCountry implements CountryPredicate {
 
     @Override
     public boolean checkValidity(String country) {
-        return country.equals(givenCountry);
+        return country.equalsIgnoreCase(givenCountry);
     }
 }
